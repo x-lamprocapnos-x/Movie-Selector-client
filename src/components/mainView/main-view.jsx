@@ -29,10 +29,8 @@ export const MainView = () => {
     if (selectedMovie) {
         return (
             <MovieView
-                movie={selectedMovie}
-                onBackClick={() => setSelectedMovie(null)}
-            />
-
+                movie={selectedMovie} onBackClick={() => 
+                    setSelectedMovie(null)} />
         );
     }
 
@@ -46,7 +44,7 @@ export const MainView = () => {
                 return <MovieCard
                     key={movie.id}
                     movie={movie}
-                    onClick={(newSelectedMovie) => {
+                    onMovieClick={(newSelectedMovie) => {
                         setSelectedMovie(newSelectedMovie);
                     }}
                 />

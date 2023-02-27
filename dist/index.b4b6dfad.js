@@ -27330,25 +27330,25 @@ const MainView = ()=>{
         children: "Please add Movies!"
     }, void 0, false, {
         fileName: "src/components/mainView/main-view.jsx",
-        lineNumber: 40,
+        lineNumber: 38,
         columnNumber: 16
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: movies.map((movie)=>{
             return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
                 movie: movie,
-                onClick: (newSelectedMovie)=>{
+                onMovieClick: (newSelectedMovie)=>{
                     setSelectedMovie(newSelectedMovie);
                 }
             }, movie.id, false, {
                 fileName: "src/components/mainView/main-view.jsx",
-                lineNumber: 46,
+                lineNumber: 44,
                 columnNumber: 24
             }, undefined);
         })
     }, void 0, false, {
         fileName: "src/components/mainView/main-view.jsx",
-        lineNumber: 44,
+        lineNumber: 42,
         columnNumber: 9
     }, undefined);
 };
@@ -27403,7 +27403,7 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "MovieCard", ()=>MovieCard);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
-const MovieCard = ({ movie  }, onMovieClick)=>{
+const MovieCard = ({ movie , onMovieClick  })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         onClick: ()=>{
             onMovieClick(movie);
@@ -27435,14 +27435,14 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "MovieView", ()=>MovieView);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
-const MovieView = ({ movie  }, onBackClick)=>{
+const MovieView = ({ movie , onBackClick  })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                            src: book.image
+                            src: movie.image
                         }, void 0, false, {
                             fileName: "src/components/movieView/movie-view.jsx",
                             lineNumber: 6,
@@ -27496,7 +27496,7 @@ const MovieView = ({ movie  }, onBackClick)=>{
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                onCLick: onBackClick,
+                onClick: onBackClick,
                 children: "Back"
             }, void 0, false, {
                 fileName: "src/components/movieView/movie-view.jsx",
