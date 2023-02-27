@@ -2924,18 +2924,16 @@ var prevRefreshSig = window.$RefreshSig$;
 $parcel$ReactRefreshHelpers$98a3.prelude(module);
 
 try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _client = require("react-dom/client");
 var _mainView = require("./components/mainView/main-view");
-var _mainViewDefault = parcelHelpers.interopDefault(_mainView);
 //import statement to indicate that you need to bundle `./index.scss
 var _indexScss = require("./index.scss");
 //main component (will eventually use all others)
 const MyFlixApplication = ()=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "my-flix",
-        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _mainViewDefault.default), {}, void 0, false, {
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _mainView.MainView), {}, void 0, false, {
             fileName: "src/index.jsx",
             lineNumber: 9,
             columnNumber: 13
@@ -2964,7 +2962,7 @@ $RefreshReg$(_c, "MyFlixApplication");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react-dom/client":"lOjBx","./index.scss":"lJZlQ","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"9fple","./components/mainView/main-view":"gF8Qy","@parcel/transformer-js/src/esmodule-helpers.js":"bT9Pl"}],"iTorj":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react-dom/client":"lOjBx","./index.scss":"lJZlQ","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"9fple","./components/mainView/main-view":"gF8Qy"}],"iTorj":[function(require,module,exports) {
 "use strict";
 module.exports = require("21bf9d97a9daaaca");
 
@@ -27337,7 +27335,7 @@ const MainView = ()=>{
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: movies.map((movie)=>{
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
+            return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
                 movie: movie,
                 onClick: (newSelectedMovie)=>{
                     setSelectedMovie(newSelectedMovie);
@@ -27345,7 +27343,7 @@ const MainView = ()=>{
             }, movie.id, false, {
                 fileName: "src/components/mainView/main-view.jsx",
                 lineNumber: 46,
-                columnNumber: 17
+                columnNumber: 24
             }, undefined);
         })
     }, void 0, false, {
