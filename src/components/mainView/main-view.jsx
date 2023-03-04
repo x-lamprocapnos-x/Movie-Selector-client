@@ -10,11 +10,11 @@ export const MainView = () => {
         fetch("https://movie-selector.onrender.com/movies")
             .then((response) => response.json())
             .then((data) => {
-                const moviesFromApi = data.docs.map((doc) => {
+                const moviesFromApi = data.map((docs) => {
                     return{
-                        id: doc.key,
-                        title: doc.Title,
-                        author: doc.Director_name?.[0]
+                        id: docs.key,
+                        title:docs.Title,
+                        author:docs.Director_name?.[0]
                     };
                 });
 

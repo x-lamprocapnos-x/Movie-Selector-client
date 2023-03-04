@@ -27297,40 +27297,34 @@ var _movieView = require("../movieView/movie-view");
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
-    const [movies, setMovies] = (0, _react.useState)([
-        {
-            id: 1,
-            title: "Up",
-            image: "https://m.media-amazon.com/images/I/71JYINi-l0L._AC_UF894,1000_QL80_.jpg",
-            director: "Pete Doctor"
-        },
-        {
-            id: 2,
-            title: "Gnomeo and Juliet",
-            image: "https://m.media-amazon.com/images/M/MV5BZDNmYzlhMTMtNmFlMC00ODY5LTgzOTctZDI3ZWNhZjM2OGE1XkEyXkFqcGdeQXVyMTA4NjE0NjEy._V1_FMjpg_UX1000_.jpg",
-            director: "Kelly Asbury"
-        },
-        {
-            id: 3,
-            title: "Cloudy with a Chance of Meatballs",
-            image: "https://www.themoviedb.org/t/p/original/hSFnUubrQRTPwhffn1YhJqfGHH4.jpg",
-            director: "Phil Lord"
-        }
-    ]);
+    const [movies, setMovies] = (0, _react.useState)([]);
     const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
+    (0, _react.useEffect)(()=>{
+        fetch("https://movie-selector.onrender.com/movies").then((response)=>response.json()).then((data)=>{
+            const moviesFromApi = data.map((docs)=>{
+                return {
+                    id: docs.key,
+                    title: docs.Title,
+                    author: docs.Director_name?.[0]
+                };
+            });
+            setMovies(moviesFromApi);
+            console.log("movies from api: ", data);
+        });
+    }, []);
     if (selectedMovie) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
         movie: selectedMovie,
         onBackClick: ()=>setSelectedMovie(null)
     }, void 0, false, {
         fileName: "src/components/mainView/main-view.jsx",
-        lineNumber: 31,
+        lineNumber: 29,
         columnNumber: 13
     }, undefined);
     if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "Please add Movies!"
     }, void 0, false, {
         fileName: "src/components/mainView/main-view.jsx",
-        lineNumber: 38,
+        lineNumber: 36,
         columnNumber: 16
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27342,17 +27336,17 @@ const MainView = ()=>{
                 }
             }, movie.id, false, {
                 fileName: "src/components/mainView/main-view.jsx",
-                lineNumber: 44,
+                lineNumber: 42,
                 columnNumber: 24
             }, undefined);
         })
     }, void 0, false, {
         fileName: "src/components/mainView/main-view.jsx",
-        lineNumber: 42,
+        lineNumber: 40,
         columnNumber: 9
     }, undefined);
 };
-_s(MainView, "kVkkAK6D+Zj+TL+jriUxdsmXyVk=");
+_s(MainView, "PO+XgOji7E32nFJj3H5UPLPJ7w4=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
