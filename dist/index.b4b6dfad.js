@@ -27422,11 +27422,7 @@ MovieCard.propTypes = {
             name: (0, _propTypesDefault.default).string,
             description: (0, _propTypesDefault.default).string
         }),
-        director: (0, _propTypesDefault.default).shape({
-            name: (0, _propTypesDefault.default).string,
-            bio: (0, _propTypesDefault.default).string,
-            birthYear: (0, _propTypesDefault.default).number
-        }),
+        director: (0, _propTypesDefault.default).arrayOf((0, _propTypesDefault.default).object),
         actors: (0, _propTypesDefault.default).arrayOf((0, _propTypesDefault.default).string),
         description: (0, _propTypesDefault.default).string
     }).isRequired,
