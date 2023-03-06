@@ -1,23 +1,26 @@
 import { useState, useEffect } from "react";
 import { MovieCard } from "../movieCard/movie-card";
 import { MovieView } from "../movieView/movie-view";
+import { LoginView } from "../loginView/login-view";
 
 export const MainView = () => {
+
     const [movies, setMovies] = useState([]);
     const [selectedMovie, setSelectedMovie] = useState(null);
-
+    const [user, setUser] = useState(null);
+    
     useEffect(() => {
         fetch("https://movie-selector.onrender.com/movies")
             .then((response) => response.json())
             .then((data) => {
                 const moviesFromApi = data.map((docs) => {
-                    return{
-                        id: docs.key,
+                    return {
+                        id: docs._id,
                         title: docs.Title,
                         genre: docs.Genre,
-                        director: docs.Director_name?.[0],
+                        director: docs.Director,
                         actors: docs.Actor_name?.[0],
-                        description: docs.Descriptiopn
+                        description: docs.Description
                     };
                 });
 
@@ -26,6 +29,9 @@ export const MainView = () => {
             });
     }, []);
 
+    if (!user) {
+        return <LoginView onLoggedIn={(user) => setUser(user)}/>;
+    }
 
     if (selectedMovie) {
         return (
