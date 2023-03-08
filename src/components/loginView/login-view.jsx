@@ -15,7 +15,7 @@ export const LoginView = ({ onLoggedIn }) => {
 
 
         fetch("https://movie-selector.onrender.com/login", { 
-            method: Post,
+            method: "Post",
             headers: {
                 "Content-Type": "application/json"
             },
