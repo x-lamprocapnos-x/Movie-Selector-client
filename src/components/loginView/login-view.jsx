@@ -3,44 +3,55 @@ import { React, useState } from "react";
 const [username, setUsername] = useState("");
 const [password, setPassword] = useState("");
 
-export const LoginView = ({onLoggedIn}) => {
+export const LoginView = ({ onLoggedIn }) => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
         const data = {
-            access: username,
-            secret: password
+            Username: username,
+            Password: password
         };
 
 
-        fetch("https://openlibrary.org/account/login.json", {
+        fetch("https://openlibrary.org/account/login.json", { //https://movie-selector.onrender.com/login
             method: Post,
+            headers: {
+                "Content-Type": "application/json"
+            },
             body: JSON.stringify(data)
-        }).then((response) => {
-            if (response.ok){
-                onLoggedIN(username);
-            }else {
-                alert ("Login Failed");
-            };
-        })
+        }).then((response) => response.json())
+            .then((data) => {
+                console.log("Login respsonse: ", data);
+                if (data.user) {
+                    localStorage.setItem("user", JSON.stringify(data.user));
+                    localStorage.setItem("token", data.token);
+                    onLoggedIn(data.user, data.token);
+                } else {
+                    alert("No such user");
+                };
+            })
+            .catch((e) => {
+                alert("Something went wrong")
+            });
     };
 
     return (
-        <form onSubmit = {handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <label>
-                Username: <input 
-                type="text"
-                value = {username}
-                onChange = {(e) => setUsername(e.targetValue)}
-                required
-            />
+                Username: <input
+                    type="text"
+                    value={username}
+                    minLength="7"
+                    onChange={(e) => setUsername(e.targetValue)}
+                    required
+                />
             </label>
             <label>
-                Password: <input 
-                type="password"
-                value = {password} 
-                onChange = {(e) => setPassword(e.targetValue)} 
-                required
+                Password: <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.targetValue)}
+                    required
                 />
             </label>
             <button type="submit">Submit</button>
