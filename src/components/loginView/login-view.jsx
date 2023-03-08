@@ -1,9 +1,10 @@
 import { React, useState } from "react";
 
-const [username, setUsername] = useState("");
-const [password, setPassword] = useState("");
+
 
 export const LoginView = ({ onLoggedIn }) => {
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
     const handleSubmit = (event) => {
         event.preventDefault();
 
@@ -13,7 +14,7 @@ export const LoginView = ({ onLoggedIn }) => {
         };
 
 
-        fetch("https://openlibrary.org/account/login.json", { //https://movie-selector.onrender.com/login
+        fetch("https://movie-selector.onrender.com/login", { 
             method: Post,
             headers: {
                 "Content-Type": "application/json"
