@@ -2,15 +2,24 @@ import { useState, useEffect } from "react";
 import { MovieCard } from "../movieCard/movie-card";
 import { MovieView } from "../movieView/movie-view";
 import { LoginView } from "../loginView/login-view";
+import { SignupView } from "../signUpView/signUp-view";
 
 export const MainView = () => {
-
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const storedToken = localStorage.getItem("token");
+    const [user, setUser] = useState(null);
+    const [token, setToken] = useState(null);
     const [movies, setMovies] = useState([]);
     const [selectedMovie, setSelectedMovie] = useState(null);
-    const [user, setUser] = useState(null);
-    
+
     useEffect(() => {
-        fetch("https://movie-selector.onrender.com/movies")
+        if (!token) {
+            return;
+        }
+
+        fetch("https://movie-selector.onrender.com/movies", {
+            headers: { Authorization: `Bearer ${token}` }
+        })
             .then((response) => response.json())
             .then((data) => {
                 const moviesFromApi = data.map((docs) => {
@@ -27,10 +36,20 @@ export const MainView = () => {
                 setMovies(moviesFromApi);
                 console.log("movies from api: ", data);
             });
-    }, []);
+    }, [token]);
 
     if (!user) {
-        return <LoginView onLoggedIn={(user) => setUser(user)}/>;
+        return (
+            <>
+                <LoginView
+                    onLoggedIn={(user, token) => {
+                        setUser(user);
+                        setToken(token);
+                    }}
+                />
+                or <SignupView />
+            </>
+        );
     }
 
     if (selectedMovie) {
@@ -56,7 +75,9 @@ export const MainView = () => {
                     }}
                 />
             })}
+            <button onCLick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</button>
         </div>
     );
+
 
 };
