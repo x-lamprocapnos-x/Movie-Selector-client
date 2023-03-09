@@ -16,7 +16,7 @@ export const SignupView = () => {
             Birthday: birthday
         };
      //add sign up url 
-        fetch("SIGNUP_URL", {
+        fetch("https://movie-selector.onrender.com/users", {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
