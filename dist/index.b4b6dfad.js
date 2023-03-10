@@ -27378,7 +27378,7 @@ const MainView = ()=>{
                 }, undefined);
             }),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                onCLick: ()=>{
+                onClick: ()=>{
                     setUser(null);
                     setToken(null);
                     localStorage.clear();
@@ -28375,7 +28375,7 @@ const LoginView = ({ onLoggedIn  })=>{
                         type: "text",
                         value: username,
                         minLength: "7",
-                        onChange: (e)=>setUsername(e.targetValue),
+                        onChange: (e)=>setUsername(e.target.value),
                         required: true
                     }, void 0, false, {
                         fileName: "src/components/loginView/login-view.jsx",
@@ -28394,7 +28394,7 @@ const LoginView = ({ onLoggedIn  })=>{
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
                         type: "password",
                         value: password,
-                        onChange: (e)=>setPassword(e.targetValue),
+                        onChange: (e)=>setPassword(e.target.value),
                         required: true
                     }, void 0, false, {
                         fileName: "src/components/loginView/login-view.jsx",
