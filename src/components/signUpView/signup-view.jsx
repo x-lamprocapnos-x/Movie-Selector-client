@@ -15,7 +15,7 @@ export const SignupView = () => {
             Email: email,
             Birthday: birthday
         };
-     //add sign up url 
+     //create profile link
         fetch("https://movie-selector.onrender.com/users", {
         method: "POST",
         body: JSON.stringify(data),

@@ -16,7 +16,7 @@ export const MainView = () => {
         if (!token) {
             return;
         }
-
+        // application link
         fetch("https://movie-selector.onrender.com/movies", {
             headers: { Authorization: `Bearer ${token}` }
         })
