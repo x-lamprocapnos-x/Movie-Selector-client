@@ -13,7 +13,7 @@ export const LoginView = ({onLoggedIn}) => {
         };
 
 
-        fetch("https://openlibrary.org/account/login.json", {
+        fetch("https://movie-selector.onrender.com/login", {
             method: Post,
             body: JSON.stringify(data)
         }).then((response) => {
