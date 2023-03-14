@@ -1,13 +1,15 @@
 import { createRoot } from "react-dom/client";
 import { MainView } from "./components/mainView/main-view";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Container from 'react-bootstrap/Container';
 //import statement to indicate that you need to bundle `./index.scss
 import "./index.scss";
 //main component (will eventually use all others)
 const MyFlixApplication = () => {
     return(
-        <div className="my-flix">
+        <Container>
             <MainView/>
-        </div>
+        </Container>
     );
 };
 //finds the root of your app
