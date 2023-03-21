@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { MovieCard } from "../movieCard/movie-card";
 import { MovieView } from "../movieView/movie-view";
 import { LoginView } from "../loginView/login-view";
-import { SignupView } from "../signUpView/signUp-view";
+import { SignupView } from "../signUpView/signup-view";
 import { Row, Col, } from "react-bootstrap";
 
 export const MainView = () => {
