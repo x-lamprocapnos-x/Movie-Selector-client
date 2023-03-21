@@ -7,11 +7,7 @@ export const MovieCard = ({ movie, onMovieClick }) => {
             <Card.Img variant="top" src={movie.image} />
             <Card.Body>
                 <Card.Title>{movie.title}</Card.Title>
-                {
-                    movie.director.map((item, index) => {
-                        return  <Card.Text key={index}>{item.Name}</Card.Text>
-                    })
-                }
+                <Card.Text>{movie.director.map((director) => director.Name).join(", ")}</Card.Text>
                 <Button onClick={() => onMovieClick(movie)} variant="link">
                     Open
                 </Button>
