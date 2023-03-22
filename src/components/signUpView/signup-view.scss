@@ -1,7 +1,27 @@
+$primary-color: rgb(155, 180, 159);
+$greyCard: rgba(147, 141, 141, 0.75);
+$text-color: rgb(255, 255, 255);
+$button-color: rgb(30, 155, 245);
+$padding-10: 10px;
+$margin-10: 10px;
+$min-width: 500px;
+$max-width: 800px;
+$button-shape: 4px 12px 4px 12px;
+$button-border: 4px;
+
+
 .submit-button {
-    padding: 4px 12px 4px 12px;
-    color: whitesmoke;
-    background-color: dodgerblue;
+    padding: $button-shape;
+    color: $text-color;
+    background-color: $button-color;
     border: none;
-    border-radius: 4px;
+    border-radius: $button-border;
+  }
+
+  .sigBox {
+    background-color: $greyCard;
+    padding:$padding-10;
+    margin:$margin-5 ;
+    min-width: $min-width;
+    max-width: $max-width;
   }
