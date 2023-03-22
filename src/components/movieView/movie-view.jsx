@@ -1,11 +1,11 @@
-import "./movie-view.scss"
+import "./movie-view.scss";
 
 export const MovieView = ({ movie, onBackClick }) => {
     return (
         <div>
             <div>
                 <div>
-                    <img src={movie.image} />
+                    <img className="w-100" src={movie.image} />
                 </div>
                 <div>
                     <span>Title: </span>
@@ -13,7 +13,7 @@ export const MovieView = ({ movie, onBackClick }) => {
                 </div>
                 <div>
                     <span>Genre: </span>
-                    <span> {movie.genre.map((genre) => genre.Name).join(", ")} </span>
+                    <span> {Object.values(movie.genre).join(", ")} </span>
                 </div>
                 <div>
                     <span>Director: </span>
