@@ -1,5 +1,9 @@
-$color: rgb(55, 142, 38);
+$primary-color: rgb(155, 180, 159);
+$greyCard: rgba(147, 141, 141, 0.75);
+$text-color: rgb(255, 255, 255);
+$button-color: rgb(30, 155, 245);
 
-.my-flix{
-    color: $color;
+body{
+    background-color: $primary-color;
+    color: $text-color;
 }
