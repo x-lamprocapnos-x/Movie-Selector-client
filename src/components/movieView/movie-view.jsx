@@ -1,35 +1,34 @@
 import "./movie-view.scss";
+import { Card, Button } from "react-bootstrap"
 
 export const MovieView = ({ movie, onBackClick }) => {
     return (
-        <div>
-            <div>
-                <div>
-                    <img className="w-100" src={movie.image} />
-                </div>
-                <div>
-                    <span>Title: </span>
+        <Card>
+            <Card.Body>
+                <Card.Img variant="top" className="w-100" src={movie.image} />
+                <Card.Title className="title">
+                    <span> Title: </span>
                     <span> {movie.title} </span>
-                </div>
-                <div>
-                    <span>Genre: </span>
+                </Card.Title>
+                <Card.Subtitle className="genre">
+                    <span> Genre: </span>
                     <span> {Object.values(movie.genre).join(", ")} </span>
-                </div>
-                <div>
-                    <span>Director: </span>
+                </Card.Subtitle>
+                <Card.Text className="director">
+                    <span> Director: </span>
                     <span> {movie.director.map((director) => director.Name).join(", ")} </span>
-                </div>
-                <div>
-                    <span>Actors: </span>
+                </Card.Text>
+                <Card.Text className="actors">
+                    <span> Actors: </span>
                     <span> {movie.actors} </span>
-                </div>
-                <div>
-                    <span>Description: </span>
+                </Card.Text>
+                <Card.Text className="movie-description">
+                    <span> Description: </span>
                     <span> {movie.description} </span>
-                </div>
+                </Card.Text>
 
-            </div>
-            <button onClick={onBackClick} className="back-button" style={{ cursor: "pointer" }}>Back </button>
-        </div>
+                <Button onClick={onBackClick} className="back-button" style={{ cursor: "pointer" }}>Back </Button>
+            </Card.Body>
+        </Card>
     );
 };
