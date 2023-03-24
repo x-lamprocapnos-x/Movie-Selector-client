@@ -10,7 +10,15 @@ $margin-10: 10px;
 $min-width: 500px;
 $max-width: 800px;
 
-body{
-    background-color: $primary-color;
-    color: $white;
+.title, .genre, .director, .actors, .movie-description{
+  color:$black;
 }
+
+
+.back-button {
+    padding: $button-shape;
+    color: $white;
+    background-color: $black; //button still blue?
+    border: none;
+    border-radius: $button-border;
+  }

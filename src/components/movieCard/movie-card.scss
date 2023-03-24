@@ -7,10 +7,9 @@ $button-shape: (4px, 12px, 4px, 12px);
 $button-border: 4px;
 $padding-10: 10px;
 $margin-10: 10px;
-$min-width: 500px;
-$max-width: 800px;
+$min-width: 600px;
+$max-width: 1000px;
 
-body{
-    background-color: $primary-color;
-    color: $white;
+.title, .card-director{
+    color:$black;
 }

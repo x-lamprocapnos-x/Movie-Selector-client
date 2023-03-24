@@ -1,21 +1,57 @@
-.my-flix {
-  color: #378e26;
+.title, .card-director {
+  color: #000;
+}
+
+.title, .genre, .director, .actors, .movie-description {
+  color: #000;
 }
 
 .back-button {
-  color: #f5f5f5;
-  background-color: #1e90ff;
+  padding: 4px, 12px, 4px, 12px;
+  color: #fff;
+  background-color: #000;
+  border: none;
+  border-radius: 4px;
+}
+
+.submit-button {
+  color: #fff;
+  background-color: #000;
   border: none;
   border-radius: 4px;
   padding: 4px 12px;
 }
 
+.logBox {
+  min-width: 600px;
+  max-width: 1000px;
+  background-color: #938d8dcc;
+  margin: 10px;
+  padding: 10px;
+}
+
+.username, .password {
+  color: #000;
+}
+
+.username, .password, .email-input, .birthdate-input {
+  color: #000;
+}
+
 .submit-button {
-  color: #f5f5f5;
-  background-color: #1e90ff;
+  padding: 4px, 12px, 4px, 12px;
+  color: #fff;
+  background-color: #000;
   border: none;
   border-radius: 4px;
-  padding: 4px 12px;
+}
+
+.sigBox {
+  min-width: 600px;
+  max-width: 1000px;
+  background-color: #938d8dcc;
+  margin: 10px;
+  padding: 10px;
 }
 
 :root {
@@ -12053,4 +12089,9 @@ textarea.form-control-lg {
   }
 }
 
-/*# sourceMappingURL=index.ce1d6491.css.map */
+body {
+  color: #fff;
+  background-color: #7d2020;
+}
+
+/*# sourceMappingURL=index.1f5875f7.css.map */

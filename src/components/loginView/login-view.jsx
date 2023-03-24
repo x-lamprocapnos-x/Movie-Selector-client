@@ -1,4 +1,6 @@
+import "./login-view.scss"
 import { React, useState } from "react";
+import { Button, Form, Card, Row, Col } from "react-bootstrap";
 
 
 
@@ -13,8 +15,8 @@ export const LoginView = ({ onLoggedIn }) => {
             Password: password
         };
 
-// login link
-        fetch("https://movie-selector.onrender.com/login", { 
+        // login link
+        fetch("https://movie-selector.onrender.com/login", {
             method: "Post",
             headers: {
                 "Content-Type": "application/json"
@@ -37,25 +39,36 @@ export const LoginView = ({ onLoggedIn }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label>
-                Username: <input
-                    type="text"
-                    value={username}
-                    minLength="7"
-                    onChange={(e) => setUsername(e.target.value)}
-                    required
-                />
-            </label>
-            <label>
-                Password: <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-            </label>
-            <button type="submit">Submit</button>
-        </form>
+        <Row>
+            <Card className="logBox">
+                <Form onSubmit={handleSubmit}>
+                    <Card.Body>
+                        <Form.Group controlId="formUserLog">
+                            <Form.Label className="username">Username:</Form.Label>
+                            <Form.Control
+                                type="text"
+                                value={username}
+                                minLength="7"
+                                onChange={(e) => setUsername(e.target.value)}
+                                placeholder="welcome back"
+                                required
+                            />
+                        </Form.Group>
+
+                        <Form.Group controlId="formPassLog">
+                            <Form.Label className="password">Password:</Form.Label>
+                            <Form.Control
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                placeholder="shh..."
+                                required
+                            />
+                        </Form.Group>
+                        <Button variant="primary" type="submit" className="submit-button">Submit</Button>
+                    </Card.Body>
+                </Form>
+            </Card>
+        </Row>
     );
 };
