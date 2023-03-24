@@ -1,3 +1,4 @@
+import "./signup-view.scss";
 import { useState } from "react";
 import { Button, Form, Card, Row } from "react-bootstrap";
 
@@ -38,42 +39,42 @@ export const SignupView = () => {
             <Card className="sigBox">
                 <Form onSubmit={handleSubmit}>
                     <Form.Group controlId="formUsername">
-                        <Form.Label>Username:</Form.Label>
+                        <Form.Label className="username">Username:</Form.Label>
                         <Form.Control
                             type="text"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
+                            placeholder="username"
                             required
                             minLength="7"
                         />
                     </Form.Group>
 
                     <Form.Group controlId="formPassword">
-                        <Form.Label>Password:</Form.Label>
+                        <Form.Label className="password">Password:</Form.Label>
 
                         <Form.Control
                             type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
+                            placeholder="choose your password"
                             required
                         />
                     </Form.Group>
 
                     <Form.Group controlId="formEmail">
-                        <Form.Label>Email</Form.Label>
-
+                        <Form.Label className="email-input">Email:</Form.Label>
                         <Form.Control
                             type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
+                            placeholder="provide valid email"
                             required
                         />
-
                     </Form.Group>
 
                     <Form.Group controlId="formBirthday"></Form.Group>
-                    <Form.Label></Form.Label>
-                    Birthday:
+                    <Form.Label className="birthdate-input">Birthday:</Form.Label>
                     <Form.Control
                         type="date"
                         value={birthday}
