@@ -10,8 +10,8 @@ export const MovieCard = ({ movie }) => {
             <Card.Body>
                 <Card.Title className="title">{movie.title}</Card.Title>
                 <Card.Subtitle className="card-director">{movie.director.map((director) => director.Name).join(", ")}</Card.Subtitle>
-                <Link to={`/books/${encodedURIComponent(movie._id)}`}>
-                    <Button onClick={() => onMovieClick(movie)} variant="link">
+                <Link to={`/movie/${encodeURIComponent(movie._id)}`}>
+                    <Button variant="link">
                         Open
                     </Button>
                 </Link>
@@ -30,6 +30,5 @@ MovieCard.propTypes = {
         director: PropTypes.arrayOf(PropTypes.object),
         actors: PropTypes.arrayOf(PropTypes.string),
         description: PropTypes.string
-    }).isRequired,
-    onMovieClick: PropTypes.func.isRequired
+    }).isRequired
 };
