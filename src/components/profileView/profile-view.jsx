@@ -110,7 +110,7 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
                                     value={password}
                                     onChange={e => setPassword(e.target.value)}
                                     required
-                                    minlength="8"
+                                    minLength="8"
                                     className="bg-light"
                                 />
                             </Form.Group>
