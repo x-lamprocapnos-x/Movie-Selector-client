@@ -27260,7 +27260,7 @@ const MainView = ()=>{
                                 columnNumber: 25
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
-                                path: "/user",
+                                path: "/profile",
                                 element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
                                     children: [
                                         "!user ? (",
@@ -27293,7 +27293,7 @@ const MainView = ()=>{
                                 columnNumber: 25
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
-                                path: "/movies/:movie_id",
+                                path: "/movies/:movie.id",
                                 element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
                                     children: !user ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Navigate), {
                                         to: "login",
@@ -27416,7 +27416,7 @@ const MovieCard = ({ movie  })=>{
                         columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
-                        to: `/movie/${encodeURIComponent(movie._id)}`,
+                        to: `/movies/${encodeURIComponent(movie.id)}`,
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                             variant: "link",
                             children: "Open"
@@ -47140,7 +47140,7 @@ const ProfileView = ({ user , token , movies , onLoggedOut , updateUser  })=>{
                                                 value: password,
                                                 onChange: (e)=>setPassword(e.target.value),
                                                 required: true,
-                                                minlength: "8",
+                                                minLength: "8",
                                                 className: "bg-light"
                                             }, void 0, false, {
                                                 fileName: "src/components/profileView/profile-view.jsx",
@@ -47325,7 +47325,7 @@ const NavigationBar = ({ user , onLoggedOut  })=>{
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav).Link, {
                                         as: (0, _reactRouterDom.Link),
-                                        to: "/user",
+                                        to: "/profile",
                                         children: "Profile"
                                     }, void 0, false, {
                                         fileName: "src/components/navigation-bar/navigation-bar.jsx",
