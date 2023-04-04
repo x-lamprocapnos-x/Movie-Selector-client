@@ -10,7 +10,7 @@ export const MovieCard = ({ movie }) => {
             <Card.Body>
                 <Card.Title className="title">{movie.title}</Card.Title>
                 <Card.Subtitle className="card-director">{movie.director.map((director) => director.Name).join(", ")}</Card.Subtitle>
-                <Link to={`/movie/${encodeURIComponent(movie._id)}`}>
+                <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
                     <Button variant="link">
                         Open
                     </Button>
