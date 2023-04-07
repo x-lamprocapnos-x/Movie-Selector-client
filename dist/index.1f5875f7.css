@@ -1,4 +1,4 @@
-.title, .card-director {
+.card-title, .card-director, .card-body {
   color: #000;
 }
 
@@ -52,6 +52,10 @@
   background-color: #938d8dcc;
   margin: 10px;
   padding: 10px;
+}
+
+.card-title, .card-text, .form-label {
+  color: #000;
 }
 
 :root {
