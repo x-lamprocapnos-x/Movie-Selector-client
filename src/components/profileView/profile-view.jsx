@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Card, Col, Form, Button } from "react-bootstrap";
 import { MovieCard } from "../movieCard/movie-card";
+import "./profile-view.scss";
 
 export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) => {
 
@@ -73,12 +74,10 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
                 <Card>
                     <Card.Body>
                         <Card.Title>Profile</Card.Title>
-                        <Card.Text>
-                            <p>Username: {user.Username}</p>
-                            <p>Email: {user.Email}</p>
-                            <p>Birthday: {user.Birthday}</p>
-                            <p>Favorite Movie: {user.FavoriteMovie}</p>
-                        </Card.Text>
+                        <Card.Text> Username: {user.Username}</Card.Text>
+                        <Card.Text>Email: {user.Email}</Card.Text>
+                        <Card.Text>Birthday: {user.Birthday}</Card.Text>
+                        <Card.Text>Favorite Movies: {user.FavoriteMovie}</Card.Text>
                     </Card.Body>
                 </Card>
                 <Button variant="danger" onClick={() => {
@@ -97,7 +96,7 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
                                 <Form.Control
                                     type="text"
                                     value={username}
-                                    onChange={e => setUsername(e.target.vlaue)}
+                                    onChange={e => setUsername(e.target.value)}
                                     required
                                     minLength="7"
                                     className="bg-light"
