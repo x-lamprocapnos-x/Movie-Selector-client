@@ -92,27 +92,27 @@ export const MainView = () => {
                             path="/profile"
                             element={
                                 <>
-                                    !user ? (
-                                    <Navigate to="/login" replace />
-                                    ): (
-                                    <Col md={8}>
-                                        <ProfileView
-                                            user={user}
-                                            token={token}
-                                            movies={movies}
-                                            onLoggedOut={() => {
-                                                setUser(null);
-                                                setToken(null);
-                                                localStorage.clear();
-                                            }}
-                                        />
-                                        )
-                                    </Col>
+                                    {!user ? (
+                                        <Navigate to="/login" replace />
+                                    ) : (
+                                        <Col md={8}>
+                                            <ProfileView
+                                                user={user}
+                                                token={token}
+                                                movies={movies}
+                                                onLoggedOut={() => {
+                                                    setUser(null);
+                                                    setToken(null);
+                                                    localStorage.clear();
+                                                }}
+                                            />
+                                        </Col>
+                                    )}
                                 </>
                             }
                         />
                         <Route
-                            path="/movies/:movie.id"
+                            path="/movies/:movieId"
                             element={
                                 <>
                                     {!user ? (
@@ -122,8 +122,7 @@ export const MainView = () => {
                                     ) : (
                                         <Col md={8}>
                                             <MovieView
-                                                movie={selectedMovie}
-                                                onBackClick={() => setSelectedMovie(null)}
+                                                movies={movies}
                                             />
                                         </Col>
 
