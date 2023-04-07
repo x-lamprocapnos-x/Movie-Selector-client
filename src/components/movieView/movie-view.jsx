@@ -1,12 +1,71 @@
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { Card, Button } from "react-bootstrap";
+import { useState, useEffect } from "react";
 import "./movie-view.scss";
 
 export const MovieView = ({ movies }) => {
     const { movieId } = useParams();
 
-    const movie = movies.find((m) => m._id === movieId);
+    const movie = movies.find((m) => m.id === movieId);
+    const [isFavorite, setFavorite] = useState (user.FavoriteMovie.includes(movie.id))
+
+    useEffect(() => {
+        setFavorite(user.FavoriteMovie.includes(movie.id));
+    }, [movie.id]);
+    
+    const addFavorite = () => {
+        fetch(`https://movie-selector.onrender.com/user/${user.username}/movies/${movieId}`, {
+            method: "POST",
+            headers: {Authorization : `Bearer${token}` }
+        })
+        .then(response => {
+            if(response.ok){
+                return response.json();
+            }
+            else{
+                alert("Failure to add movie to Favorites");
+                return false;
+            }                
+        })
+        .then(user => {
+            if (user) {
+                alert("Successfully added to Favorites");
+                setFavorite(true);
+                updateUser(user);     
+            }
+        })
+        .catch(e => {
+            alert(e)
+        });
+    }
+
+    const removeFavorite = () => {
+        fetch(`https://movie-selector.onrender.com/user/${user.username}/movies/${movieId}`, {
+            method: "DELETE",
+            headers: {Authorization: `Bearer ${token}` }
+        })
+        .then(response => {
+            if(response.ok){
+                return response.json();
+            }
+            else {
+                alert("Failed to remove movie from favorites");
+                return false;
+            }
+        })
+        .then(user => {
+            if (user) {
+                alert("Successfully removed from favorites");
+                setFavorite(true);
+                updateUser(user);
+            }
+        })
+        .catch(e => {
+            alert(e);
+        });
+    }
+
     return (
         <Card>
             <Card.Body>
