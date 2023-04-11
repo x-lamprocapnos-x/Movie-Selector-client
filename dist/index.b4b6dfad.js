@@ -33198,7 +33198,7 @@ Dropdown.Toggle = (0, _dropdownToggleDefault.default);
 Dropdown.Item = (0, _dropdownItemDefault.default);
 exports.default = Dropdown;
 
-},{"dom-helpers/querySelectorAll":"g5Sx6","dom-helpers/addEventListener":"c5x2p","react":"21dqq","uncontrollable":"b3yWY","@restart/hooks/usePrevious":"gDCGm","@restart/hooks/useForceUpdate":"3Y4bz","@restart/hooks/useEventListener":"dBDI3","@restart/hooks/useEventCallback":"7ONdq","./DropdownContext":"dX4vI","./DropdownMenu":"6fCTW","./DropdownToggle":"8iWIY","./DropdownItem":"hDAPz","./SelectableContext":"8zLqy","./DataKey":"9vwZh","./useWindow":"4AsJ2","react/jsx-runtime":"6AEwr","@parcel/transformer-js/src/esmodule-helpers.js":"bT9Pl"}],"g5Sx6":[function(require,module,exports) {
+},{"dom-helpers/querySelectorAll":"g5Sx6","dom-helpers/addEventListener":"c5x2p","react":"21dqq","uncontrollable":"hZZ1I","@restart/hooks/usePrevious":"gDCGm","@restart/hooks/useForceUpdate":"3Y4bz","@restart/hooks/useEventListener":"dBDI3","@restart/hooks/useEventCallback":"7ONdq","./DropdownContext":"dX4vI","./DropdownMenu":"6fCTW","./DropdownToggle":"8iWIY","./DropdownItem":"hDAPz","./SelectableContext":"8zLqy","./DataKey":"9vwZh","./useWindow":"4AsJ2","react/jsx-runtime":"6AEwr","@parcel/transformer-js/src/esmodule-helpers.js":"bT9Pl"}],"g5Sx6":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var toArray = Function.prototype.bind.call(Function.prototype.call, [].slice);
@@ -33207,7 +33207,78 @@ function qsa(element, selector) {
 }
 exports.default = qsa;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"bT9Pl"}],"3Y4bz":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"bT9Pl"}],"hZZ1I":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "defaultKey", ()=>defaultKey);
+parcelHelpers.export(exports, "useUncontrolledProp", ()=>useUncontrolledProp);
+parcelHelpers.export(exports, "useUncontrolled", ()=>useUncontrolled);
+var _react = require("react");
+function _objectWithoutPropertiesLoose(source, excluded) {
+    if (source == null) return {};
+    var target = {};
+    var sourceKeys = Object.keys(source);
+    var key, i;
+    for(i = 0; i < sourceKeys.length; i++){
+        key = sourceKeys[i];
+        if (excluded.indexOf(key) >= 0) continue;
+        target[key] = source[key];
+    }
+    return target;
+}
+function _toPropertyKey(arg) {
+    var key = _toPrimitive(arg, "string");
+    return typeof key === "symbol" ? key : String(key);
+}
+function _toPrimitive(input, hint) {
+    if (typeof input !== "object" || input === null) return input;
+    var prim = input[Symbol.toPrimitive];
+    if (prim !== undefined) {
+        var res = prim.call(input, hint || "default");
+        if (typeof res !== "object") return res;
+        throw new TypeError("@@toPrimitive must return a primitive value.");
+    }
+    return (hint === "string" ? String : Number)(input);
+}
+function defaultKey(key) {
+    return "default" + key.charAt(0).toUpperCase() + key.substr(1);
+}
+function useUncontrolledProp(propValue, defaultValue, handler) {
+    const wasPropRef = (0, _react.useRef)(propValue !== undefined);
+    const [stateValue, setState] = (0, _react.useState)(defaultValue);
+    const isProp = propValue !== undefined;
+    const wasProp = wasPropRef.current;
+    wasPropRef.current = isProp;
+    /**
+   * If a prop switches from controlled to Uncontrolled
+   * reset its value to the defaultValue
+   */ if (!isProp && wasProp && stateValue !== defaultValue) setState(defaultValue);
+    return [
+        isProp ? propValue : stateValue,
+        (0, _react.useCallback)((value, ...args)=>{
+            if (handler) handler(value, ...args);
+            setState(value);
+        }, [
+            handler
+        ])
+    ];
+}
+function useUncontrolled(props, config) {
+    return Object.keys(config).reduce((result, fieldName)=>{
+        const _ref = result, _defaultKey = defaultKey(fieldName), { [_defaultKey]: defaultValue , [fieldName]: propsValue  } = _ref, rest = _objectWithoutPropertiesLoose(_ref, [
+            _defaultKey,
+            fieldName
+        ].map(_toPropertyKey));
+        const handlerName = config[fieldName];
+        const [value, handler] = useUncontrolledProp(propsValue, defaultValue, props[handlerName]);
+        return Object.assign({}, rest, {
+            [fieldName]: value,
+            [handlerName]: handler
+        });
+    }, props);
+}
+
+},{"react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"bT9Pl"}],"3Y4bz":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
@@ -33947,7 +34018,7 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 function getUAString() {
     var uaData = navigator.userAgentData;
-    if (uaData != null && uaData.brands) return uaData.brands.map(function(item) {
+    if (uaData != null && uaData.brands && Array.isArray(uaData.brands)) return uaData.brands.map(function(item) {
         return item.brand + "/" + item.version;
     }).join(" ");
     return navigator.userAgent;
@@ -34176,9 +34247,8 @@ var unsetSides = {
 }; // Round the offsets to the nearest suitable subpixel based on the DPR.
 // Zooming can change the DPR, but it seems to report a value that will
 // cleanly divide the values into the appropriate subpixels.
-function roundOffsetsByDPR(_ref) {
+function roundOffsetsByDPR(_ref, win) {
     var x = _ref.x, y = _ref.y;
-    var win = window;
     var dpr = win.devicePixelRatio || 1;
     return {
         x: (0, _mathJs.round)(x * dpr) / dpr || 0,
@@ -34234,7 +34304,7 @@ function mapToStyles(_ref2) {
     var _ref4 = roundOffsets === true ? roundOffsetsByDPR({
         x: x,
         y: y
-    }) : {
+    }, (0, _getWindowJsDefault.default)(popper)) : {
         x: x,
         y: y
     };
@@ -35984,21 +36054,30 @@ var _reactDefault = parcelHelpers.interopDefault(_react);
 // SSR case multiple copies of React Aria is not supported.
 const $704cf1d3b684cc5c$var$defaultContext = {
     prefix: String(Math.round(Math.random() * 10000000000)),
-    current: 0
+    current: 0,
+    isSSR: false
 };
 const $704cf1d3b684cc5c$var$SSRContext = (0, _reactDefault.default).createContext($704cf1d3b684cc5c$var$defaultContext);
 function $704cf1d3b684cc5c$export$9f8ac96af4b1b2ae(props) {
     let cur = (0, _react.useContext)($704cf1d3b684cc5c$var$SSRContext);
     let counter = $704cf1d3b684cc5c$var$useCounter(cur === $704cf1d3b684cc5c$var$defaultContext);
+    let [isSSR, setIsSSR] = (0, _react.useState)(true);
     let value = (0, _react.useMemo)(()=>({
             // If this is the first SSRProvider, start with an empty string prefix, otherwise
             // append and increment the counter.
             prefix: cur === $704cf1d3b684cc5c$var$defaultContext ? "" : `${cur.prefix}-${counter}`,
-            current: 0
+            current: 0,
+            isSSR: isSSR
         }), [
         cur,
-        counter
+        counter,
+        isSSR
     ]);
+    // If on the client, and the component was initially server rendered,
+    // then schedule a layout effect to update the component after hydration.
+    if (typeof window !== "undefined") (0, _react.useLayoutEffect)(()=>{
+        setIsSSR(false);
+    }, []);
     return (0, _reactDefault.default).createElement($704cf1d3b684cc5c$var$SSRContext.Provider, {
         value: value
     }, props.children);
@@ -36049,14 +36128,7 @@ function $704cf1d3b684cc5c$export$619500959fc48b26(defaultId) {
 }
 function $704cf1d3b684cc5c$export$535bd6ca7f90a273() {
     let cur = (0, _react.useContext)($704cf1d3b684cc5c$var$SSRContext);
-    let isInSSRContext = cur !== $704cf1d3b684cc5c$var$defaultContext;
-    let [isSSR, setIsSSR] = (0, _react.useState)(isInSSRContext);
-    // If on the client, and the component was initially server rendered,
-    // then schedule a layout effect to update the component after hydration.
-    if (typeof window !== "undefined" && isInSSRContext) (0, _react.useLayoutEffect)(()=>{
-        setIsSSR(false);
-    }, []);
-    return isSSR;
+    return cur.isSSR;
 }
 
 },{"react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"bT9Pl"}],"hDAPz":[function(require,module,exports) {
@@ -37769,6 +37841,7 @@ var _useWaitForDOMRefDefault = parcelHelpers.interopDefault(_useWaitForDOMRef);
 var _useWindow = require("./useWindow");
 var _useWindowDefault = parcelHelpers.interopDefault(_useWindow);
 var _imperativeTransition = require("./ImperativeTransition");
+var _utils = require("./utils");
 var _jsxRuntime = require("react/jsx-runtime");
 const _excluded = [
     "show",
@@ -37917,7 +37990,7 @@ const Modal = /*#__PURE__*/ (0, _react.forwardRef)((_ref, ref)=>{
         if (backdrop === true) onHide();
     });
     const handleDocumentKeyDown = (0, _useEventCallbackDefault.default)((e)=>{
-        if (keyboard && e.keyCode === 27 && modal.isTopModal()) {
+        if (keyboard && (0, _utils.isEscKey)(e) && modal.isTopModal()) {
             onEscapeKeyDown == null || onEscapeKeyDown(e);
             if (!e.defaultPrevented) onHide();
         }
@@ -37985,7 +38058,7 @@ exports.default = Object.assign(Modal, {
     Manager: (0, _modalManagerDefault.default)
 });
 
-},{"dom-helpers/activeElement":"5ShA6","dom-helpers/contains":"KpRFS","dom-helpers/canUseDOM":"9AwUB","dom-helpers/listen":"1i4e7","react":"21dqq","react-dom":"j6uA9","@restart/hooks/useMounted":"iK6A1","@restart/hooks/useWillUnmount":"2OOXI","@restart/hooks/usePrevious":"gDCGm","@restart/hooks/useEventCallback":"7ONdq","./ModalManager":"5alMm","./useWaitForDOMRef":"83lRQ","./useWindow":"4AsJ2","./ImperativeTransition":"j0Jao","react/jsx-runtime":"6AEwr","@parcel/transformer-js/src/esmodule-helpers.js":"bT9Pl"}],"5ShA6":[function(require,module,exports) {
+},{"dom-helpers/activeElement":"5ShA6","dom-helpers/contains":"KpRFS","dom-helpers/canUseDOM":"9AwUB","dom-helpers/listen":"1i4e7","react":"21dqq","react-dom":"j6uA9","@restart/hooks/useMounted":"iK6A1","@restart/hooks/useWillUnmount":"2OOXI","@restart/hooks/usePrevious":"gDCGm","@restart/hooks/useEventCallback":"7ONdq","./ModalManager":"5alMm","./useWaitForDOMRef":"83lRQ","./useWindow":"4AsJ2","./ImperativeTransition":"j0Jao","react/jsx-runtime":"6AEwr","@parcel/transformer-js/src/esmodule-helpers.js":"bT9Pl","./utils":"2Fmci"}],"5ShA6":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _ownerDocument = require("./ownerDocument");
@@ -38258,7 +38331,15 @@ function NoopTransition({ children , in: inProp , onExited , mountOnEnter , unmo
 }
 exports.default = NoopTransition;
 
-},{"@restart/hooks/useEventCallback":"7ONdq","@restart/hooks/useMergedRefs":"6hhuo","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"bT9Pl"}],"lr1Yp":[function(require,module,exports) {
+},{"@restart/hooks/useEventCallback":"7ONdq","@restart/hooks/useMergedRefs":"6hhuo","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"bT9Pl"}],"2Fmci":[function(require,module,exports) {
+/* eslint-disable import/prefer-default-export */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "isEscKey", ()=>isEscKey);
+function isEscKey(e) {
+    return e.code === "Escape" || e.keyCode === 27;
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"bT9Pl"}],"lr1Yp":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "getSharedManager", ()=>getSharedManager);
@@ -39478,7 +39559,7 @@ var _useEventCallback = require("@restart/hooks/useEventCallback");
 var _useEventCallbackDefault = parcelHelpers.interopDefault(_useEventCallback);
 var _useClickOutside = require("./useClickOutside");
 var _useClickOutsideDefault = parcelHelpers.interopDefault(_useClickOutside);
-const escapeKeyCode = 27;
+var _utils = require("./utils");
 const noop = ()=>{};
 /**
  * The `useRootClose` hook registers your callback on the document
@@ -39498,7 +39579,7 @@ const noop = ()=>{};
         clickTrigger
     });
     const handleKeyUp = (0, _useEventCallbackDefault.default)((e)=>{
-        if (e.keyCode === escapeKeyCode) onClose(e);
+        if ((0, _utils.isEscKey)(e)) onClose(e);
     });
     (0, _react.useEffect)(()=>{
         if (disabled || ref == null) return undefined;
@@ -39525,7 +39606,7 @@ const noop = ()=>{};
 }
 exports.default = useRootClose;
 
-},{"dom-helpers/listen":"1i4e7","dom-helpers/ownerDocument":"2WpOk","react":"21dqq","@restart/hooks/useEventCallback":"7ONdq","./useClickOutside":"ed4Oi","@parcel/transformer-js/src/esmodule-helpers.js":"bT9Pl"}],"iHgTL":[function(require,module,exports) {
+},{"dom-helpers/listen":"1i4e7","dom-helpers/ownerDocument":"2WpOk","react":"21dqq","@restart/hooks/useEventCallback":"7ONdq","./useClickOutside":"ed4Oi","@parcel/transformer-js/src/esmodule-helpers.js":"bT9Pl","./utils":"2Fmci"}],"iHgTL":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
@@ -40437,7 +40518,7 @@ const Tabs = (props)=>{
 Tabs.Panel = (0, _tabPanelDefault.default);
 exports.default = Tabs;
 
-},{"react":"21dqq","uncontrollable":"b3yWY","./ssr":"eaHes","./TabContext":"cI3G3","./SelectableContext":"8zLqy","./TabPanel":"4REJB","react/jsx-runtime":"6AEwr","@parcel/transformer-js/src/esmodule-helpers.js":"bT9Pl"}],"4REJB":[function(require,module,exports) {
+},{"react":"21dqq","uncontrollable":"hZZ1I","./ssr":"eaHes","./TabContext":"cI3G3","./SelectableContext":"8zLqy","./TabPanel":"4REJB","react/jsx-runtime":"6AEwr","@parcel/transformer-js/src/esmodule-helpers.js":"bT9Pl"}],"4REJB":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "useTabPanel", ()=>useTabPanel);
@@ -41219,7 +41300,7 @@ function registerExportsForReactRefresh(module1) {
 
 },{"ff3f2437a1274b1a":"i9XvO"}],"4Ei4C":[function() {},{}],"9xmpe":[function(require,module,exports) {
 /**
- * React Router DOM v6.9.0
+ * React Router DOM v6.10.0
  *
  * Copyright (c) Remix Software Inc.
  *
@@ -41461,11 +41542,10 @@ const _excluded = [
     "relative",
     "preventScrollReset"
 ];
-//#region Routers
-////////////////////////////////////////////////////////////////////////////////
 function createBrowserRouter(routes, opts) {
     return (0, _router.createRouter)({
         basename: opts == null ? void 0 : opts.basename,
+        future: opts == null ? void 0 : opts.future,
         history: (0, _router.createBrowserHistory)({
             window: opts == null ? void 0 : opts.window
         }),
@@ -41477,6 +41557,7 @@ function createBrowserRouter(routes, opts) {
 function createHashRouter(routes, opts) {
     return (0, _router.createRouter)({
         basename: opts == null ? void 0 : opts.basename,
+        future: opts == null ? void 0 : opts.future,
         history: (0, _router.createHashHistory)({
             window: opts == null ? void 0 : opts.window
         }),
@@ -42111,7 +42192,7 @@ let savedScrollPositions = {};
 
 },{"react":"21dqq","react-router":"dbWyW","@remix-run/router":"5ncDG","@parcel/transformer-js/src/esmodule-helpers.js":"bT9Pl"}],"dbWyW":[function(require,module,exports) {
 /**
- * React Router v6.9.0
+ * React Router v6.10.0
  *
  * Copyright (c) Remix Software Inc.
  *
@@ -43190,17 +43271,17 @@ class AwaitErrorBoundary extends _react.Component {
         if (!/*#__PURE__*/ _react.isValidElement(element)) // Ignore non-elements. This allows people to more easily inline
         // conditionals in their route config.
         return;
-        if (element.type === _react.Fragment) {
-            // Transparently support React.Fragment and its children.
-            routes.push.apply(routes, createRoutesFromChildren(element.props.children, parentPath));
-            return;
-        }
-        !(element.type === Route) && (0, _router.UNSAFE_invariant)(false, "[" + (typeof element.type === "string" ? element.type : element.type.name) + "] is not a <Route> component. All component children of <Routes> must be a <Route> or <React.Fragment>");
-        !(!element.props.index || !element.props.children) && (0, _router.UNSAFE_invariant)(false, "An index route cannot have child routes.");
         let treePath = [
             ...parentPath,
             index
         ];
+        if (element.type === _react.Fragment) {
+            // Transparently support React.Fragment and its children.
+            routes.push.apply(routes, createRoutesFromChildren(element.props.children, treePath));
+            return;
+        }
+        !(element.type === Route) && (0, _router.UNSAFE_invariant)(false, "[" + (typeof element.type === "string" ? element.type : element.type.name) + "] is not a <Route> component. All component children of <Routes> must be a <Route> or <React.Fragment>");
+        !(!element.props.index || !element.props.children) && (0, _router.UNSAFE_invariant)(false, "An index route cannot have child routes.");
         let route = {
             id: element.props.id || treePath.join("-"),
             caseSensitive: element.props.caseSensitive,
@@ -43236,6 +43317,7 @@ function detectErrorBoundary(route) {
 function createMemoryRouter(routes, opts) {
     return (0, _router.createRouter)({
         basename: opts == null ? void 0 : opts.basename,
+        future: opts == null ? void 0 : opts.future,
         history: (0, _router.createMemoryHistory)({
             initialEntries: opts == null ? void 0 : opts.initialEntries,
             initialIndex: opts == null ? void 0 : opts.initialIndex
@@ -43248,7 +43330,7 @@ function createMemoryRouter(routes, opts) {
 
 },{"@remix-run/router":"5ncDG","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"bT9Pl"}],"5ncDG":[function(require,module,exports) {
 /**
- * @remix-run/router v1.4.0
+ * @remix-run/router v1.5.0
  *
  * Copyright (c) Remix Software Inc.
  *
@@ -43280,6 +43362,7 @@ parcelHelpers.export(exports, "defer", ()=>defer);
 parcelHelpers.export(exports, "generatePath", ()=>generatePath);
 parcelHelpers.export(exports, "getStaticContextFromError", ()=>getStaticContextFromError);
 parcelHelpers.export(exports, "getToPathname", ()=>getToPathname);
+parcelHelpers.export(exports, "isDeferredData", ()=>isDeferredData);
 parcelHelpers.export(exports, "isRouteErrorResponse", ()=>isRouteErrorResponse);
 parcelHelpers.export(exports, "joinPaths", ()=>joinPaths);
 parcelHelpers.export(exports, "json", ()=>json);
@@ -44349,7 +44432,10 @@ const defaultDetectErrorBoundary = (route)=>Boolean(route.hasErrorBoundary); //#
     let detectErrorBoundary = init.detectErrorBoundary || defaultDetectErrorBoundary; // Routes keyed by ID
     let manifest = {}; // Routes in tree format for matching
     let dataRoutes = convertRoutesToDataRoutes(init.routes, detectErrorBoundary, undefined, manifest);
-    let inFlightDataRoutes; // Cleanup function for history
+    let inFlightDataRoutes; // Config driven behavior flags
+    let future = _extends({
+        v7_normalizeFormMethod: false
+    }, init.future); // Cleanup function for history
     let unlistenHistory = null; // Externally-provided functions to call on all state changes
     let subscribers = new Set(); // Externally-provided object to hold scroll restoration locations during routing
     let savedScrollPositions = null; // Externally-provided function to get scroll restoration keys
@@ -44470,24 +44556,12 @@ const defaultDetectErrorBoundary = (route)=>Boolean(route.hasErrorBoundary); //#
                 return;
             }
             return startNavigation(historyAction, location);
-        });
-        if (state.initialized) return router;
-        let lazyMatches = state.matches.filter((m)=>m.route.lazy);
-        if (lazyMatches.length === 0) {
-            // Kick off initial data load if needed.  Use Pop to avoid modifying history
-            startNavigation(Action.Pop, state.location);
-            return router;
-        } // Load lazy modules, then kick off initial data load if needed
-        let lazyPromises = lazyMatches.map((m)=>loadLazyRouteModule(m.route, detectErrorBoundary, manifest));
-        Promise.all(lazyPromises).then(()=>{
-            let initialized = !state.matches.some((m)=>m.route.loader) || init.hydrationData != null;
-            if (initialized) // We already have required loaderData so we can just set initialized
-            updateState({
-                initialized: true
-            });
-            else // We still need to kick off initial data loads
-            startNavigation(Action.Pop, state.location);
-        });
+        }); // Kick off initial data load if needed.  Use Pop to avoid modifying history
+        // Note we don't do any handling of lazy here.  For SPA's it'll get handled
+        // in the normal navigation flow.  For SSR it's expected that lazy modules are
+        // resolved prior to router creation since we can't go into a fallbackElement
+        // UI for SSR'd apps
+        if (!state.initialized) startNavigation(Action.Pop, state.location);
         return router;
     } // Clean up a router and it's side effects
     function dispose() {
@@ -44567,7 +44641,7 @@ const defaultDetectErrorBoundary = (route)=>Boolean(route.hasErrorBoundary); //#
             init.history.go(to);
             return;
         }
-        let { path , submission , error  } = normalizeNavigateOptions(to, opts);
+        let { path , submission , error  } = normalizeNavigateOptions(to, future, opts);
         let currentLocation = state.location;
         let nextLocation = createLocation(state.location, path, opts && opts.state); // When using navigate as a PUSH/REPLACE we aren't reading an already-encoded
         // URL from window.location, so we need to encode it here so the behavior
@@ -44713,7 +44787,7 @@ const defaultDetectErrorBoundary = (route)=>Boolean(route.hasErrorBoundary); //#
                 signal: request.signal
             });
         } // Call loaders
-        let { shortCircuited , loaderData , errors  } = await handleLoaders(request, location, matches, loadingNavigation, opts && opts.submission, opts && opts.replace, pendingActionData, pendingError);
+        let { shortCircuited , loaderData , errors  } = await handleLoaders(request, location, matches, loadingNavigation, opts && opts.submission, opts && opts.fetcherSubmission, opts && opts.replace, pendingActionData, pendingError);
         if (shortCircuited) return;
          // Clean up now that the action/loaders have completed.  Don't clean up if
         // we short circuited because pendingNavigationController will have already
@@ -44795,7 +44869,7 @@ const defaultDetectErrorBoundary = (route)=>Boolean(route.hasErrorBoundary); //#
         };
     } // Call all applicable loaders for the given matches, handling redirects,
     // errors, etc.
-    async function handleLoaders(request, location, matches, overrideNavigation, submission, replace, pendingActionData, pendingError) {
+    async function handleLoaders(request, location, matches, overrideNavigation, submission, fetcherSubmission, replace, pendingActionData, pendingError) {
         // Figure out the right navigation we want to use for data loading
         let loadingNavigation = overrideNavigation;
         if (!loadingNavigation) {
@@ -44810,7 +44884,7 @@ const defaultDetectErrorBoundary = (route)=>Boolean(route.hasErrorBoundary); //#
             loadingNavigation = navigation;
         } // If this was a redirect from an action we don't have a "submission" but
         // we have it on the loading navigation so use that if available
-        let activeSubmission = submission ? submission : loadingNavigation.formMethod && loadingNavigation.formAction && loadingNavigation.formData && loadingNavigation.formEncType ? {
+        let activeSubmission = submission || fetcherSubmission ? submission || fetcherSubmission : loadingNavigation.formMethod && loadingNavigation.formAction && loadingNavigation.formData && loadingNavigation.formEncType ? {
             formMethod: loadingNavigation.formMethod,
             formAction: loadingNavigation.formAction,
             formData: loadingNavigation.formData,
@@ -44913,7 +44987,7 @@ const defaultDetectErrorBoundary = (route)=>Boolean(route.hasErrorBoundary); //#
             }));
             return;
         }
-        let { path , submission  } = normalizeNavigateOptions(href, opts, true);
+        let { path , submission  } = normalizeNavigateOptions(href, future, opts, true);
         let match = getTargetMatch(matches, path);
         pendingPreventScrollReset = (opts && opts.preventScrollReset) === true;
         if (submission && isMutationMethod(submission.formMethod)) {
@@ -44975,6 +45049,7 @@ const defaultDetectErrorBoundary = (route)=>Boolean(route.hasErrorBoundary); //#
                 fetchers: new Map(state.fetchers)
             });
             return startRedirectNavigation(state, actionResult, {
+                submission,
                 isFetchActionRedirect: true
             });
         } // Process any non-redirect errors thrown
@@ -45185,6 +45260,21 @@ const defaultDetectErrorBoundary = (route)=>Boolean(route.hasErrorBoundary); //#
             submission: _extends({}, submission, {
                 formAction: redirect.location
             }),
+            // Preserve this flag across redirects
+            preventScrollReset: pendingPreventScrollReset
+        });
+        else if (isFetchActionRedirect) // For a fetch action redirect, we kick off a new loading navigation
+        // without the fetcher submission, but we send it along for shouldRevalidate
+        await startNavigation(redirectHistoryAction, redirectLocation, {
+            overrideNavigation: {
+                state: "loading",
+                location: redirectLocation,
+                formMethod: undefined,
+                formAction: undefined,
+                formEncType: undefined,
+                formData: undefined
+            },
+            fetcherSubmission: submission,
             // Preserve this flag across redirects
             preventScrollReset: pendingPreventScrollReset
         });
@@ -45465,10 +45555,10 @@ function createStaticHandler(routes, opts) {
    */ async function query(request, _temp2) {
         let { requestContext  } = _temp2 === void 0 ? {} : _temp2;
         let url = new URL(request.url);
-        let method = request.method.toLowerCase();
+        let method = request.method;
         let location = createLocation("", createPath(url), null, "default");
         let matches = matchRoutes(dataRoutes, location, basename); // SSR supports HEAD requests while SPA doesn't
-        if (!isValidMethod(method) && method !== "head") {
+        if (!isValidMethod(method) && method !== "HEAD") {
             let error = getInternalRouterError(405, {
                 method
             });
@@ -45539,10 +45629,10 @@ function createStaticHandler(routes, opts) {
    */ async function queryRoute(request, _temp3) {
         let { routeId , requestContext  } = _temp3 === void 0 ? {} : _temp3;
         let url = new URL(request.url);
-        let method = request.method.toLowerCase();
+        let method = request.method;
         let location = createLocation("", createPath(url), null, "default");
         let matches = matchRoutes(dataRoutes, location, basename); // SSR supports HEAD requests while SPA doesn't
-        if (!isValidMethod(method) && method !== "head" && method !== "options") throw getInternalRouterError(405, {
+        if (!isValidMethod(method) && method !== "HEAD" && method !== "OPTIONS") throw getInternalRouterError(405, {
             method
         });
         else if (!matches) throw getInternalRouterError(404, {
@@ -45758,7 +45848,7 @@ function isSubmissionNavigation(opts) {
     return opts != null && "formData" in opts;
 } // Normalize navigation options by converting formMethod=GET formData objects to
 // URLSearchParams so they behave identically to links with query params
-function normalizeNavigateOptions(to, opts, isFetcher) {
+function normalizeNavigateOptions(to, future, opts, isFetcher) {
     if (isFetcher === void 0) isFetcher = false;
     let path = typeof to === "string" ? to : createPath(to); // Return location verbatim on non-submission navigations
     if (!opts || !isSubmissionNavigation(opts)) return {
@@ -45773,8 +45863,9 @@ function normalizeNavigateOptions(to, opts, isFetcher) {
      // Create a Submission on non-GET navigations
     let submission;
     if (opts.formData) {
+        let formMethod = opts.formMethod || "get";
         submission = {
-            formMethod: opts.formMethod || "get",
+            formMethod: future.v7_normalizeFormMethod ? formMethod.toUpperCase() : formMethod.toLowerCase(),
             formAction: stripHashFromPath(path),
             formEncType: opts && opts.formEncType || "application/x-www-form-urlencoded",
             formData: opts.formData
@@ -46074,7 +46165,7 @@ async function callLoaderOrAction(type, request, match, matches, manifest, detec
         type: resultType,
         error: result
     };
-    if (result instanceof DeferredData) {
+    if (isDeferredData(result)) {
         var _result$init, _result$init2;
         return {
             type: ResultType.deferred,
@@ -46096,7 +46187,9 @@ function createClientSideRequest(history, location, signal, submission) {
         signal
     };
     if (submission && isMutationMethod(submission.formMethod)) {
-        let { formMethod , formEncType , formData  } = submission;
+        let { formMethod , formEncType , formData  } = submission; // Didn't think we needed this but it turns out unlike other methods, patch
+        // won't be properly normalized to uppercase and results in a 405 error.
+        // See: https://fetch.spec.whatwg.org/#concept-method
         init.method = formMethod.toUpperCase();
         init.body = formEncType === "application/x-www-form-urlencoded" ? convertFormDataToSearchParams(formData) : formData;
     } // Content-Type is inferred (https://fetch.spec.whatwg.org/#dom-request)
@@ -46282,6 +46375,10 @@ function isErrorResult(result) {
 function isRedirectResult(result) {
     return (result && result.type) === ResultType.redirect;
 }
+function isDeferredData(value) {
+    let deferred = value;
+    return deferred && typeof deferred === "object" && typeof deferred.data === "object" && typeof deferred.subscribe === "function" && typeof deferred.cancel === "function" && typeof deferred.resolveData === "function";
+}
 function isResponse(value) {
     return value != null && typeof value.status === "number" && typeof value.statusText === "string" && typeof value.headers === "object" && typeof value.body !== "undefined";
 }
@@ -46295,10 +46392,10 @@ function isQueryRouteResponse(obj) {
     return obj && isResponse(obj.response) && (obj.type === ResultType.data || ResultType.error);
 }
 function isValidMethod(method) {
-    return validRequestMethods.has(method);
+    return validRequestMethods.has(method.toLowerCase());
 }
 function isMutationMethod(method) {
-    return validMutationMethods.has(method);
+    return validMutationMethods.has(method.toLowerCase());
 }
 async function resolveDeferredResults(currentMatches, matchesToLoad, results, signal, isFetcher, currentLoaderData) {
     for(let index = 0; index < results.length; index++){
@@ -46379,11 +46476,11 @@ var _reactBootstrap = require("react-bootstrap");
 var _react = require("react");
 var _movieViewScss = require("./movie-view.scss");
 var _s = $RefreshSig$();
-const MovieView = ({ movies  })=>{
+const MovieView = ({ movies , user , token , updateUser  })=>{
     _s();
     const { movieId  } = (0, _reactRouter.useParams)();
     const movie = movies.find((m)=>m.id === movieId);
-    const [isFavorite, setFavorite] = (0, _react.useState)(user.FavoriteMovie.includes(movie.id));
+    const [isFavorite, setFavorite] = (0, _react.useState)(user.favoriteMovie.includes(movie.id));
     (0, _react.useEffect)(()=>{
         setFavorite(user.FavoriteMovie.includes(movie.id));
     }, [
@@ -46401,11 +46498,11 @@ const MovieView = ({ movies  })=>{
                 alert("Failure to add movie to Favorites");
                 return false;
             }
-        }).then((user1)=>{
-            if (user1) {
+        }).then((user)=>{
+            if (user) {
                 alert("Successfully added to Favorites");
                 setFavorite(true);
-                updateUser(user1);
+                updateUser(user);
             }
         }).catch((e)=>{
             alert(e);
@@ -46423,11 +46520,11 @@ const MovieView = ({ movies  })=>{
                 alert("Failed to remove movie from favorites");
                 return false;
             }
-        }).then((user1)=>{
-            if (user1) {
+        }).then((user)=>{
+            if (user) {
                 alert("Successfully removed from favorites");
-                setFavorite(true);
-                updateUser(user1);
+                setFavorite(false);
+                updateUser(user);
             }
         }).catch((e)=>{
             alert(e);
@@ -46442,7 +46539,7 @@ const MovieView = ({ movies  })=>{
                     src: movie.image
                 }, void 0, false, {
                     fileName: "src/components/movieView/movie-view.jsx",
-                    lineNumber: 72,
+                    lineNumber: 71,
                     columnNumber: 17
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
@@ -46452,7 +46549,7 @@ const MovieView = ({ movies  })=>{
                             children: " Title: "
                         }, void 0, false, {
                             fileName: "src/components/movieView/movie-view.jsx",
-                            lineNumber: 74,
+                            lineNumber: 73,
                             columnNumber: 21
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
@@ -46463,13 +46560,13 @@ const MovieView = ({ movies  })=>{
                             ]
                         }, void 0, true, {
                             fileName: "src/components/movieView/movie-view.jsx",
-                            lineNumber: 75,
+                            lineNumber: 74,
                             columnNumber: 21
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/movieView/movie-view.jsx",
-                    lineNumber: 73,
+                    lineNumber: 72,
                     columnNumber: 17
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Subtitle, {
@@ -46479,7 +46576,7 @@ const MovieView = ({ movies  })=>{
                             children: " Genre: "
                         }, void 0, false, {
                             fileName: "src/components/movieView/movie-view.jsx",
-                            lineNumber: 78,
+                            lineNumber: 77,
                             columnNumber: 21
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
@@ -46490,13 +46587,13 @@ const MovieView = ({ movies  })=>{
                             ]
                         }, void 0, true, {
                             fileName: "src/components/movieView/movie-view.jsx",
-                            lineNumber: 79,
+                            lineNumber: 78,
                             columnNumber: 21
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/movieView/movie-view.jsx",
-                    lineNumber: 77,
+                    lineNumber: 76,
                     columnNumber: 17
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
@@ -46506,7 +46603,7 @@ const MovieView = ({ movies  })=>{
                             children: " Director: "
                         }, void 0, false, {
                             fileName: "src/components/movieView/movie-view.jsx",
-                            lineNumber: 82,
+                            lineNumber: 81,
                             columnNumber: 21
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
@@ -46517,13 +46614,13 @@ const MovieView = ({ movies  })=>{
                             ]
                         }, void 0, true, {
                             fileName: "src/components/movieView/movie-view.jsx",
-                            lineNumber: 83,
+                            lineNumber: 82,
                             columnNumber: 21
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/movieView/movie-view.jsx",
-                    lineNumber: 81,
+                    lineNumber: 80,
                     columnNumber: 17
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
@@ -46533,7 +46630,7 @@ const MovieView = ({ movies  })=>{
                             children: " Actors: "
                         }, void 0, false, {
                             fileName: "src/components/movieView/movie-view.jsx",
-                            lineNumber: 86,
+                            lineNumber: 85,
                             columnNumber: 21
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
@@ -46544,13 +46641,13 @@ const MovieView = ({ movies  })=>{
                             ]
                         }, void 0, true, {
                             fileName: "src/components/movieView/movie-view.jsx",
-                            lineNumber: 87,
+                            lineNumber: 86,
                             columnNumber: 21
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/movieView/movie-view.jsx",
-                    lineNumber: 85,
+                    lineNumber: 84,
                     columnNumber: 17
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
@@ -46560,7 +46657,7 @@ const MovieView = ({ movies  })=>{
                             children: " Description: "
                         }, void 0, false, {
                             fileName: "src/components/movieView/movie-view.jsx",
-                            lineNumber: 90,
+                            lineNumber: 89,
                             columnNumber: 21
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
@@ -46571,13 +46668,13 @@ const MovieView = ({ movies  })=>{
                             ]
                         }, void 0, true, {
                             fileName: "src/components/movieView/movie-view.jsx",
-                            lineNumber: 91,
+                            lineNumber: 90,
                             columnNumber: 21
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/movieView/movie-view.jsx",
-                    lineNumber: 89,
+                    lineNumber: 88,
                     columnNumber: 17
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
@@ -46590,27 +46687,50 @@ const MovieView = ({ movies  })=>{
                         children: "Back "
                     }, void 0, false, {
                         fileName: "src/components/movieView/movie-view.jsx",
-                        lineNumber: 94,
+                        lineNumber: 93,
                         columnNumber: 21
                     }, undefined)
                 }, void 0, false, {
                     fileName: "src/components/movieView/movie-view.jsx",
-                    lineNumber: 93,
+                    lineNumber: 92,
                     columnNumber: 17
+                }, undefined),
+                isFavorite ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+                    variant: "danger",
+                    style: {
+                        cursor: "pointer"
+                    },
+                    onClick: removeFavorite,
+                    children: "Remove Favorite"
+                }, void 0, false, {
+                    fileName: "src/components/movieView/movie-view.jsx",
+                    lineNumber: 96,
+                    columnNumber: 21
+                }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+                    variant: "success",
+                    style: {
+                        cursor: "pointer"
+                    },
+                    onclick: addFavorite,
+                    children: "Favorite"
+                }, void 0, false, {
+                    fileName: "src/components/movieView/movie-view.jsx",
+                    lineNumber: 97,
+                    columnNumber: 23
                 }, undefined)
             ]
         }, void 0, true, {
             fileName: "src/components/movieView/movie-view.jsx",
-            lineNumber: 71,
+            lineNumber: 70,
             columnNumber: 13
         }, undefined)
     }, void 0, false, {
         fileName: "src/components/movieView/movie-view.jsx",
-        lineNumber: 70,
+        lineNumber: 69,
         columnNumber: 9
     }, undefined);
 };
-_s(MovieView, "OqgCR3qqHoOGI+ka3bHUZsTtYpo=", false, function() {
+_s(MovieView, "E4LrR6ubiYMm8Wtin1zLPqzbkCw=", false, function() {
     return [
         (0, _reactRouter.useParams)
     ];
@@ -46624,7 +46744,7 @@ $RefreshReg$(_c, "MovieView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","./movie-view.scss":"7NOVB","@parcel/transformer-js/src/esmodule-helpers.js":"bT9Pl","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"9fple","react-bootstrap":"3AD9A","react-router":"dbWyW","react-router-dom":"9xmpe"}],"7NOVB":[function() {},{}],"1SeRs":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","./movie-view.scss":"7NOVB","@parcel/transformer-js/src/esmodule-helpers.js":"bT9Pl","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"9fple","react-bootstrap":"3AD9A","react-router":"dbWyW","react-router-dom":"9xmpe","react":"21dqq"}],"7NOVB":[function() {},{}],"1SeRs":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$0e21 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -46991,7 +47111,7 @@ const ProfileView = ({ user , token , movies , onLoggedOut , updateUser  })=>{
     const [password, setPassword] = (0, _react.useState)("");
     const [email, setEmail] = (0, _react.useState)("");
     const [birthday, setBirthday] = (0, _react.useState)("");
-    let favoriteMovie = (movie)=>user.favoriteMovie.includes(movie._id);
+    let favoriteMovie = (movie)=>user.favoriteMovie.includes(movie.Id);
     const handleSubmit = (event)=>{
         event.preventDefault();
         const userData = {
@@ -47002,7 +47122,7 @@ const ProfileView = ({ user , token , movies , onLoggedOut , updateUser  })=>{
         };
         fetch(`https://movie-selector.onrender.com/users/${user.username}`, {
             method: "PUT",
-            body: JSON.stringify(date),
+            body: JSON.stringify(userData),
             headers: {
                 Authorization: `Bearer ${token}`,
                 "Content-Type": "application/json"
@@ -47285,7 +47405,7 @@ $RefreshReg$(_c, "ProfileView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","../movieCard/movie-card":"fkYyt","@parcel/transformer-js/src/esmodule-helpers.js":"bT9Pl","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"9fple","./profile-view.scss":"1S6s4"}],"1S6s4":[function() {},{}],"bsPVM":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"bT9Pl","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"9fple","./profile-view.scss":"1S6s4","../movieCard/movie-card":"fkYyt"}],"1S6s4":[function() {},{}],"bsPVM":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$abf5 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;

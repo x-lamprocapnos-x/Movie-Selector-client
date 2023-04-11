@@ -4,11 +4,10 @@ import { Card, Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import "./movie-view.scss";
 
-export const MovieView = ({ movies }) => {
+export const MovieView = ({ movies, user, token, updateUser }) => {
     const { movieId } = useParams();
-
     const movie = movies.find((m) => m.id === movieId);
-    const [isFavorite, setFavorite] = useState (user.FavoriteMovie.includes(movie.id))
+    const [isFavorite, setFavorite] = useState(user.favoriteMovie.includes(movie.id));
 
     useEffect(() => {
         setFavorite(user.FavoriteMovie.includes(movie.id));
@@ -57,7 +56,7 @@ export const MovieView = ({ movies }) => {
         .then(user => {
             if (user) {
                 alert("Successfully removed from favorites");
-                setFavorite(true);
+                setFavorite(false);
                 updateUser(user);
             }
         })
@@ -93,6 +92,10 @@ export const MovieView = ({ movies }) => {
                 <Link to={`/`}>
                     <Button className="back-button" style={{ cursor: "pointer" }}>Back </Button>
                 </Link>
+                {isFavorite ? 
+                    <Button variant="danger" style={{ cursor: "pointer"}} onClick={removeFavorite}>Remove Favorite</Button>
+                    : <Button variant="success" style={{cursor: "pointer"}} onclick={addFavorite}>Favorite</Button>
+                }
             </Card.Body>
         </Card>
     );
