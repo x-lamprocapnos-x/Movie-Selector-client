@@ -10,7 +10,7 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
     const [email, setEmail] = useState("");
     const [birthday, setBirthday] = useState("");
 
-    let favoriteMovie = (movie => user.favoriteMovie.includes(movie._id));
+    let favoriteMovie = (movie => user.favoriteMovie.includes(movie.Id));
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -25,7 +25,7 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
 
         fetch(`https://movie-selector.onrender.com/users/${user.username}`, {
             method: "PUT",
-            body: JSON.stringify(date),
+            body: JSON.stringify(userData),
             headers: {
                 Authorization: `Bearer ${token}`,
                 "Content-Type": "application/json"
