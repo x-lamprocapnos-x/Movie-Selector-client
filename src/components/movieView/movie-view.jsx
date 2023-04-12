@@ -7,16 +7,16 @@ import "./movie-view.scss";
 export const MovieView = ({ movies, user, token, updateUser }) => {
     const { movieId } = useParams();
     const movie = movies.find((m) => m.id === movieId);
-    const [isFavorite, setFavorite] = useState(user.favoriteMovie.includes(movie.id));
+    const [isFavorite, setFavorite] = useState(user.FavoriteMovies.includes(movie.id));
 
     useEffect(() => {
-        setFavorite(user.FavoriteMovie.includes(movie.id));
+        setFavorite(user.FavoriteMovies.includes(movie.id));
     }, [movie.id]);
     
     const addFavorite = () => {
-        fetch(`https://movie-selector.onrender.com/user/${user.username}/movies/${movieId}`, {
+        fetch(`https://movie-selector.onrender.com/users/${user.Username}/movies/${movieId}`, {
             method: "POST",
-            headers: {Authorization : `Bearer${token}` }
+            headers: {Authorization : `Bearer ${token}` }
         })
         .then(response => {
             if(response.ok){
@@ -40,7 +40,7 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
     }
 
     const removeFavorite = () => {
-        fetch(`https://movie-selector.onrender.com/user/${user.username}/movies/${movieId}`, {
+        fetch(`https://movie-selector.onrender.com/users/${user.Username}/movies/${movieId}`, {
             method: "DELETE",
             headers: {Authorization: `Bearer ${token}` }
         })
@@ -94,7 +94,7 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
                 </Link>
                 {isFavorite ? 
                     <Button variant="danger" style={{ cursor: "pointer"}} onClick={removeFavorite}>Remove Favorite</Button>
-                    : <Button variant="success" style={{cursor: "pointer"}} onclick={addFavorite}>Favorite</Button>
+                    : <Button variant="success" style={{cursor: "pointer"}} onClick={addFavorite}>Favorite</Button>
                 }
             </Card.Body>
         </Card>

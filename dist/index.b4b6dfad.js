@@ -27295,7 +27295,10 @@ const MainView = ()=>{
                                     }, void 0, false, void 0, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                                         md: 8,
                                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
-                                            movies: movies
+                                            movies: movies,
+                                            user: user,
+                                            token: token,
+                                            updateUser: setUser
                                         }, void 0, false, void 0, void 0)
                                     }, void 0, false, void 0, void 0)
                                 }, void 0, false)
@@ -27324,7 +27327,7 @@ const MainView = ()=>{
                                 }, void 0, false)
                             }, void 0, false, {
                                 fileName: "src/components/mainView/main-view.jsx",
-                                lineNumber: 133,
+                                lineNumber: 136,
                                 columnNumber: 25
                             }, undefined)
                         ]
@@ -46480,17 +46483,17 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
     _s();
     const { movieId  } = (0, _reactRouter.useParams)();
     const movie = movies.find((m)=>m.id === movieId);
-    const [isFavorite, setFavorite] = (0, _react.useState)(user.favoriteMovie.includes(movie.id));
+    const [isFavorite, setFavorite] = (0, _react.useState)(user.FavoriteMovies.includes(movie.id));
     (0, _react.useEffect)(()=>{
-        setFavorite(user.FavoriteMovie.includes(movie.id));
+        setFavorite(user.FavoriteMovies.includes(movie.id));
     }, [
         movie.id
     ]);
     const addFavorite = ()=>{
-        fetch(`https://movie-selector.onrender.com/user/${user.username}/movies/${movieId}`, {
+        fetch(`https://movie-selector.onrender.com/users/${user.Username}/movies/${movieId}`, {
             method: "POST",
             headers: {
-                Authorization: `Bearer${token}`
+                Authorization: `Bearer ${token}`
             }
         }).then((response)=>{
             if (response.ok) return response.json();
@@ -46509,7 +46512,7 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
         });
     };
     const removeFavorite = ()=>{
-        fetch(`https://movie-selector.onrender.com/user/${user.username}/movies/${movieId}`, {
+        fetch(`https://movie-selector.onrender.com/users/${user.Username}/movies/${movieId}`, {
             method: "DELETE",
             headers: {
                 Authorization: `Bearer ${token}`
@@ -46711,7 +46714,7 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
                     style: {
                         cursor: "pointer"
                     },
-                    onclick: addFavorite,
+                    onClick: addFavorite,
                     children: "Favorite"
                 }, void 0, false, {
                     fileName: "src/components/movieView/movie-view.jsx",
@@ -46730,7 +46733,7 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
         columnNumber: 9
     }, undefined);
 };
-_s(MovieView, "E4LrR6ubiYMm8Wtin1zLPqzbkCw=", false, function() {
+_s(MovieView, "rvhmqH8AFWJl/U4e7rRr8pBCYZQ=", false, function() {
     return [
         (0, _reactRouter.useParams)
     ];
@@ -47405,7 +47408,7 @@ $RefreshReg$(_c, "ProfileView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"bT9Pl","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"9fple","./profile-view.scss":"1S6s4","../movieCard/movie-card":"fkYyt"}],"1S6s4":[function() {},{}],"bsPVM":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","../movieCard/movie-card":"fkYyt","@parcel/transformer-js/src/esmodule-helpers.js":"bT9Pl","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"9fple","./profile-view.scss":"1S6s4"}],"1S6s4":[function() {},{}],"bsPVM":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$abf5 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
