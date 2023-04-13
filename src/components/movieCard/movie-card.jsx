@@ -11,7 +11,7 @@ export const MovieCard = ({ movie }) => {
                 <Card.Title className="card-title">{movie.title}</Card.Title>
                 <Card.Subtitle className="card-director">{movie.director.map((director) => director.Name).join(", ")}</Card.Subtitle>
                 <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
-                    <Button variant="link">Open</Button>
+                    <Button>Open</Button>
                 </Link>
             </Card.Body>
         </Card>
