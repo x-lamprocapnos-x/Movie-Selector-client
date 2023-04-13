@@ -70,29 +70,34 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
 
     return (
         <>
-            <Col md={8}>
+            <Col md={10}>
                 <Card>
+                    <Card.Header className="bg-dark">Profile</Card.Header>
                     <Card.Body>
-                        <Card.Title>Profile</Card.Title>
-                        <Card.Text> Username: {user.Username}</Card.Text>
+                        <Card.Text>Username: {user.Username}</Card.Text>
+
+                        <Card.Text>Password: </Card.Text>
+
                         <Card.Text>Email: {user.Email}</Card.Text>
+
                         <Card.Text>Birthday: {user.Birthday}</Card.Text>
-                        <Card.Text>Favorite Movies: {user.FavoriteMovie}</Card.Text>
+
+                        <Card.Text>Favorite Movies: {user.FavoriteMovies}</Card.Text>
+
+                        <Button variant="danger" onClick={() => {
+                            if (confirm("Are you sure?")) {
+                                deleteAccount();
+                            }
+                        }}>Delete Account</Button>
                     </Card.Body>
                 </Card>
-                <Button variant="danger" onClick={() => {
-                    if (confirm("Are you sure?")) {
-                        deleteAccount();
-                    }
-                }}>Delete Account</Button>
-            </Col>
-            <Col md={8}>
+
                 <Card>
-                    <Card.Title>Update Profile</Card.Title>
+                    <Card.Header className="bg-dark">Update Profile</Card.Header>
                     <Card.Body>
                         <Form onSubmit={handleSubmit}>
                             <Form.Group>
-                                <Form.Label>Username:</Form.Label>
+                                <Form.Label>Update Username: </Form.Label>
                                 <Form.Control
                                     type="text"
                                     value={username}
@@ -103,7 +108,7 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
                                 />
                             </Form.Group>
                             <Form.Group>
-                                <Form.Label>Password:</Form.Label>
+                                <Form.Label>Update Password: </Form.Label>
                                 <Form.Control
                                     type="password"
                                     value={password}
@@ -114,7 +119,7 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
                                 />
                             </Form.Group>
                             <Form.Group>
-                                <Form.Label>Email:</Form.Label>
+                                <Form.Label> Update Email: </Form.Label>
                                 <Form.Control
                                     type="email"
                                     value={email}
@@ -124,7 +129,7 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
                                 />
                             </Form.Group>
                             <Form.Group>
-                                <Form.Label>Birthday:</Form.Label>
+                                <Form.Label> Update Birthday: </Form.Label>
                                 <Form.Control
                                     type="date"
                                     value={birthday}
@@ -133,8 +138,8 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
                                     className="bg-light"
                                 />
                             </Form.Group>
-                            <Button varaint="primary" type="submit">Submit</Button>
                         </Form>
+                        <Button varaint="primary" type="submit">Submit</Button>
                     </Card.Body>
                 </Card>
             </Col>
