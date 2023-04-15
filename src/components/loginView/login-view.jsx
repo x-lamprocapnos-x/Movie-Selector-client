@@ -1,6 +1,6 @@
 import "./login-view.scss"
 import { React, useState } from "react";
-import { Button, Form, Card, Row, Col } from "react-bootstrap";
+import { Button, Form, Card, Row} from "react-bootstrap";
 
 
 

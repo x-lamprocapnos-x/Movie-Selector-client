@@ -1,7 +1,70 @@
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
+import { Card, Button } from "react-bootstrap";
+import { useState, useEffect } from "react";
 import "./movie-view.scss";
-import { Card, Button } from "react-bootstrap"
 
-export const MovieView = ({ movie, onBackClick }) => {
+export const MovieView = ({ movies, user, token, updateUser }) => {
+    const { movieId } = useParams();
+    const movie = movies.find((m) => m.id === movieId);
+    const [isFavorite, setFavorite] = useState(user.FavoriteMovies.includes(movie.id));
+
+    useEffect(() => {
+        setFavorite(user.FavoriteMovies.includes(movie.id));
+    }, [movie.id]);
+    
+    const addFavorite = () => {
+        fetch(`https://movie-selector.onrender.com/users/${user.Username}/movies/${movieId}`, {
+            method: "POST",
+            headers: {Authorization : `Bearer ${token}` }
+        })
+        .then(response => {
+            if(response.ok){
+                return response.json();
+            }
+            else{
+                alert("Failure to add movie to Favorites");
+                return false;
+            }                
+        })
+        .then(user => {
+            if (user) {
+                alert("Successfully added to Favorites");
+                setFavorite(true);
+                updateUser(user);     
+            }
+        })
+        .catch(e => {
+            alert(e)
+        });
+    }
+
+    const removeFavorite = () => {
+        fetch(`https://movie-selector.onrender.com/users/${user.Username}/movies/${movieId}`, {
+            method: "DELETE",
+            headers: {Authorization: `Bearer ${token}` }
+        })
+        .then(response => {
+            if(response.ok){
+                return response.json();
+            }
+            else {
+                alert("Failed to remove movie from favorites");
+                return false;
+            }
+        })
+        .then(user => {
+            if (user) {
+                alert("Successfully removed from favorites");
+                setFavorite(false);
+                updateUser(user);
+            }
+        })
+        .catch(e => {
+            alert(e);
+        });
+    }
+
     return (
         <Card>
             <Card.Body>
@@ -26,8 +89,13 @@ export const MovieView = ({ movie, onBackClick }) => {
                     <span> Description: </span>
                     <span> {movie.description} </span>
                 </Card.Text>
-
-                <Button onClick={onBackClick} className="back-button" style={{ cursor: "pointer" }}>Back </Button>
+                <Link to={`/`}>
+                    <Button className="back-button" style={{ cursor: "pointer" }}>Back </Button>
+                </Link>
+                {isFavorite ? 
+                    <Button variant="danger" style={{ cursor: "pointer"}} onClick={removeFavorite}>Remove Favorite</Button>
+                    : <Button variant="success" style={{cursor: "pointer"}} onClick={addFavorite}>Favorite</Button>
+                }
             </Card.Body>
         </Card>
     );
