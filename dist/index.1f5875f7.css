@@ -1,6 +1,6 @@
 .card-title, .card-director, .card-body {
   color: #000;
-  padding: 5px;
+  padding: 10px;
 }
 
 .title, .genre, .director, .actors, .movie-description {
@@ -10,23 +10,20 @@
 .back-button {
   padding: 4px, 12px, 4px, 12px;
   color: #fff;
-  background-color: #000;
   border: none;
   border-radius: 4px;
 }
 
 .submit-button {
+  padding: 4px, 12px, 4px, 12px;
   color: #fff;
-  background-color: #000;
   border: none;
   border-radius: 4px;
-  padding: 4px 12px;
 }
 
 .logBox {
-  min-width: 600px;
-  max-width: 1000px;
-  background-color: #938d8dcc;
+  min-width: 800px;
+  max-width: 1500px;
   margin: 10px;
   padding: 10px;
 }
@@ -42,15 +39,18 @@
 .submit-button {
   padding: 4px, 12px, 4px, 12px;
   color: #fff;
-  background-color: #000;
   border: none;
   border-radius: 4px;
 }
 
 .sigBox {
-  min-width: 600px;
-  max-width: 1000px;
-  background-color: #938d8dcc;
+  min-width: 800px;
+  max-width: 1500px;
+  margin: 20px;
+  padding: 20px;
+}
+
+form {
   margin: 10px;
   padding: 10px;
 }

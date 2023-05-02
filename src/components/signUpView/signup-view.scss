@@ -1,14 +1,13 @@
-$primary-color: rgb(125, 32, 32);
-$secondary-color: rgb(208, 81, 67);
-$greyCard: rgba(147, 141, 141, 0.80);
 $black: rgb(0,0,0);
 $white: rgb(255, 255, 255);
 $button-shape: (4px, 12px, 4px, 12px);
 $button-border: 4px;
 $padding-10: 10px;
 $margin-10: 10px;
-$min-width: 600px;
-$max-width: 1000px;
+$padding-20: 20px;
+$margin-20: 20px;
+$min-width: 800px;
+$max-width: 1500px;
 
 .username, .password, .email-input, .birthdate-input{ //email and birhtdate not visible?
   color:$black;
@@ -17,15 +16,18 @@ $max-width: 1000px;
 .submit-button {
     padding: $button-shape;
     color: $white;
-    background-color: $black; //button still blue?
     border: none;
     border-radius: $button-border;
   }
 
   .sigBox {
-    background-color: $greyCard; //does not work
-    padding:$padding-10;
-    margin:$margin-10 ;
+    padding:$padding-20;
+    margin:$margin-20 ;
     min-width: $min-width;
     max-width: $max-width;
   }
+
+form {
+  padding:$padding-10;
+  margin:$margin-10
+}
