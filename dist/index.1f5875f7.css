@@ -12095,8 +12095,7 @@ textarea.form-control-lg {
 }
 
 body {
-  color: #fff;
-  background-color: #7d2020;
+  background-image: radial-gradient(#fff, #8a5252, #7c3333, #500909, #000);
 }
 
 /*# sourceMappingURL=index.1f5875f7.css.map */
