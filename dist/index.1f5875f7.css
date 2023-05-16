@@ -59,6 +59,14 @@ form {
   color: #000;
 }
 
+nav {
+  width: 100vw;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  position: fixed !important;
+}
+
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -12095,7 +12103,9 @@ textarea.form-control-lg {
 }
 
 body {
-  background-image: radial-gradient(#fff, #8a5252, #7c3333, #500909, #000);
+  min-height: 100vh;
+  background-image: radial-gradient(#8a5252, #7c3333, #500909, #000);
+  padding-top: 75px;
 }
 
 /*# sourceMappingURL=index.1f5875f7.css.map */
