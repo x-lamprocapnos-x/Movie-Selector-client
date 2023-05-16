@@ -82,7 +82,9 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
 
                         <Card.Text>Birthday: {user.Birthday}</Card.Text>
 
-                        <Card.Text>Favorite Movies: {user.FavoriteMovies}</Card.Text>
+                        <Card.Text>
+                            Favorite Movies:{movies.filter(movie => user.FavoriteMovies.includes(movie.id)).map(m => <MovieCard movie={m} />)}
+                        </Card.Text>
 
                         <Button variant="danger" onClick={() => {
                             if (confirm("Are you sure?")) {
