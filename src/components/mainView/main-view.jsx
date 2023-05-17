@@ -1,14 +1,16 @@
+import { connect } from "react-redux";
 import { useState, useEffect } from "react";
 import { MovieCard } from "../movieCard/movie-card";
-import { MovieView } from "../movieView/movie-view";
+import MovieView from "../movieView/movie-view";
 import { LoginView } from "../loginView/login-view";
 import { SignupView } from "../signUpView/signup-view";
 import { ProfileView } from "../profileView/profile-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { Row, Col, Container } from "react-bootstrap";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { setMovies, setUser } from "../../actions/actions";
 
-export const MainView = () => {
+const MainView = (props) => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     const storedToken = localStorage.getItem("token");
     const [user, setUser] = useState(storedUser ? storedUser : null);
@@ -32,12 +34,12 @@ export const MainView = () => {
                         title: docs.Title,
                         genre: docs.Genre,
                         director: docs.Director,
-                        actors: docs.Actor_name?.[0],
+                        actors: docs.Actors,
                         description: docs.Description,
                         image: docs.ImagePath
                     };
                 });
-
+                props.setMovies(moviesFromApi)
                 setMovies(moviesFromApi);
                 console.log("movies from api: ", data);
             });
@@ -122,7 +124,6 @@ export const MainView = () => {
                                     ) : (
                                         <Col md={8}>
                                             <MovieView
-                                                movies={movies}
                                                 user={user}
                                                 token={token}
                                                 updateUser={setUser}
@@ -160,3 +161,8 @@ export const MainView = () => {
         </BrowserRouter>
     )
 }
+
+let mapStateToProps = (state) => {
+    return { movies: state.movies };
+  };
+export default connect(mapStateToProps, {setMovies})(MainView);
