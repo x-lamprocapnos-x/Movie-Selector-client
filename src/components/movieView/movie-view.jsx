@@ -71,14 +71,14 @@ const MovieView = props => {
         <Card>
             <Card.Body>
                 <Card.Img variant="top" className="w-100" src={movie.image} />
-                <Card.Title className="title">
+                <Card.Text className="title">
                     <span> Title: </span>
                     <span> {movie.title} </span>
-                </Card.Title>
-                <Card.Subtitle className="genre">
+                </Card.Text>
+                <Card.Text className="genre">
                     <span> Genre: </span>
                     <span> {Object.values(movie.genre).join(", ")} </span>
-                </Card.Subtitle>
+                </Card.Text>
                 <Card.Text className="director">
                     <span> Director: </span>
                     <span> {movie.director.map((director) => director.Name).join(", ")} </span>
