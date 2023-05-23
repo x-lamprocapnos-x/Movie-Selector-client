@@ -13,10 +13,11 @@ import { setMovies, setUser } from "../../actions/actions";
 const MainView = (props) => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     const storedToken = localStorage.getItem("token");
-    const [user, setUser] = useState(storedUser ? storedUser : null);
+    const [user] = useState(storedUser ? storedUser : null);
     const [token, setToken] = useState(storedToken ? storedToken : null);
-    const [movies, setMovies] = useState([]);
-    const [selectedMovie, setSelectedMovie] = useState(null);
+    //const [selectedMovie, setSelectedMovie] = useState(null);
+    const {movies, setUser} = props;
+    const [filteredMovies, setFilteredMovies] = useState(movies);
 
     useEffect(() => {
         if (!token) {
@@ -39,11 +40,17 @@ const MainView = (props) => {
                         image: docs.ImagePath
                     };
                 });
-                props.setMovies(moviesFromApi)
-                setMovies(moviesFromApi);
+                props.setMovies(moviesFromApi);
+                setFilteredMovies(moviesFromApi);
                 console.log("movies from api: ", data);
             });
     }, [token]);
+
+    useEffect( ()=> {
+        console.log(props.filter)
+        let newArray = movies.filter(m => m.title.toLowerCase().includes(props.filter.toLowerCase()));
+        setFilteredMovies(newArray);
+    }, [props.filter]);
 
     return (
         <BrowserRouter>
@@ -144,7 +151,7 @@ const MainView = (props) => {
                                         <Col>The list is empty!</Col>
                                     ) : (
                                         <>
-                                            {movies.map((movie) => (
+                                            {filteredMovies.map((movie) => (
                                                 <Col className="mb-4" key={movie.id} md={3}>
                                                     <MovieCard movie={movie} />
                                                 </Col>
@@ -163,6 +170,6 @@ const MainView = (props) => {
 }
 
 let mapStateToProps = (state) => {
-    return { movies: state.movies };
+    return { movies: state.movies, filter: state.filter};
   };
 export default connect(mapStateToProps, {setMovies})(MainView);
