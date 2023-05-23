@@ -1,6 +1,7 @@
 import "./navigation-bar.scss";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import SearchBar from "../search-bar/search-bar.jsx";
 
 export const NavigationBar = ({ user, onLoggedOut }) => {
     return (
@@ -21,11 +22,12 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
                         )}
                         {user && (
                             <>
-                            <Nav.Link as={Link} to="/">Home</Nav.Link>
-                            <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
-                            <Nav.Link as={Link} onClick={onLoggedOut}>Logout</Nav.Link>
+                                <Nav.Link as={Link} to="/">Home</Nav.Link>
+                                <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
+                                <Nav.Link as={Link} onClick={onLoggedOut}>Logout</Nav.Link>
                             </>
                         )}
+                        <SearchBar />
 
                     </Nav>
                 </Navbar.Collapse>
