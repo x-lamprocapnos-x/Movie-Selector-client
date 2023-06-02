@@ -1,10 +1,12 @@
+import { connect } from "react-redux";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { Card, Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import "./movie-view.scss";
 
-export const MovieView = ({ movies, user, token, updateUser }) => {
+const MovieView = props => {
+    const { movies, user, token, updateUser } = props;
     const { movieId } = useParams();
     const movie = movies.find((m) => m.id === movieId);
     const [isFavorite, setFavorite] = useState(user.FavoriteMovies.includes(movie.id));
@@ -49,13 +51,13 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
                 return response.json();
             }
             else {
-                alert("Failed to remove movie from favorites");
+                console.log("Failed to remove movie from favorites");
                 return false;
             }
         })
         .then(user => {
             if (user) {
-                alert("Successfully removed from favorites");
+                console.log("Successfully removed from favorites");
                 setFavorite(false);
                 updateUser(user);
             }
@@ -69,21 +71,21 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
         <Card>
             <Card.Body>
                 <Card.Img variant="top" className="w-100" src={movie.image} />
-                <Card.Title className="title">
+                <Card.Text className="title">
                     <span> Title: </span>
                     <span> {movie.title} </span>
-                </Card.Title>
-                <Card.Subtitle className="genre">
+                </Card.Text>
+                <Card.Text className="genre">
                     <span> Genre: </span>
                     <span> {Object.values(movie.genre).join(", ")} </span>
-                </Card.Subtitle>
+                </Card.Text>
                 <Card.Text className="director">
                     <span> Director: </span>
                     <span> {movie.director.map((director) => director.Name).join(", ")} </span>
                 </Card.Text>
                 <Card.Text className="actors">
                     <span> Actors: </span>
-                    <span> {movie.actors} </span>
+                    <span> {movie.actors.join(", ")} </span>
                 </Card.Text>
                 <Card.Text className="movie-description">
                     <span> Description: </span>
@@ -100,3 +102,9 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
         </Card>
     );
 };
+
+const mapStateToProps = state => {
+    const { movies } = state;
+    return { movies };
+  };
+export default connect (mapStateToProps)(MovieView);

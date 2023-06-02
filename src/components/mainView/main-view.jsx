@@ -1,20 +1,23 @@
+import { connect } from "react-redux";
 import { useState, useEffect } from "react";
 import { MovieCard } from "../movieCard/movie-card";
-import { MovieView } from "../movieView/movie-view";
+import MovieView from "../movieView/movie-view";
 import { LoginView } from "../loginView/login-view";
 import { SignupView } from "../signUpView/signup-view";
 import { ProfileView } from "../profileView/profile-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { Row, Col, Container } from "react-bootstrap";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { setMovies, setUser } from "../../actions/actions";
 
-export const MainView = () => {
+const MainView = (props) => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     const storedToken = localStorage.getItem("token");
-    const [user, setUser] = useState(storedUser ? storedUser : null);
+    const [user] = useState(storedUser ? storedUser : null);
     const [token, setToken] = useState(storedToken ? storedToken : null);
-    const [movies, setMovies] = useState([]);
-    const [selectedMovie, setSelectedMovie] = useState(null);
+    //const [selectedMovie, setSelectedMovie] = useState(null);
+    const {movies, setUser} = props;
+    const [filteredMovies, setFilteredMovies] = useState(movies);
 
     useEffect(() => {
         if (!token) {
@@ -32,16 +35,22 @@ export const MainView = () => {
                         title: docs.Title,
                         genre: docs.Genre,
                         director: docs.Director,
-                        actors: docs.Actor_name?.[0],
+                        actors: docs.Actors,
                         description: docs.Description,
                         image: docs.ImagePath
                     };
                 });
-
-                setMovies(moviesFromApi);
+                props.setMovies(moviesFromApi);
+                setFilteredMovies(moviesFromApi);
                 console.log("movies from api: ", data);
             });
     }, [token]);
+
+    useEffect( ()=> {
+        console.log(props.filter)
+        let newArray = movies.filter(m => m.title.toLowerCase().includes(props.filter.toLowerCase()));
+        setFilteredMovies(newArray);
+    }, [props.filter]);
 
     return (
         <BrowserRouter>
@@ -122,7 +131,6 @@ export const MainView = () => {
                                     ) : (
                                         <Col md={8}>
                                             <MovieView
-                                                movies={movies}
                                                 user={user}
                                                 token={token}
                                                 updateUser={setUser}
@@ -143,7 +151,7 @@ export const MainView = () => {
                                         <Col>The list is empty!</Col>
                                     ) : (
                                         <>
-                                            {movies.map((movie) => (
+                                            {filteredMovies.map((movie) => (
                                                 <Col className="mb-4" key={movie.id} md={3}>
                                                     <MovieCard movie={movie} />
                                                 </Col>
@@ -160,3 +168,8 @@ export const MainView = () => {
         </BrowserRouter>
     )
 }
+
+let mapStateToProps = (state) => {
+    return { movies: state.movies, filter: state.filter};
+  };
+export default connect(mapStateToProps, {setMovies})(MainView);

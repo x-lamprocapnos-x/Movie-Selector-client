@@ -1,16 +1,22 @@
-$primary-color: rgb(125, 32, 32);
-$secondary-color: rgb(208, 81, 67);
-$greyCard: rgba(147, 141, 141, 0.80);
+$primary-color: rgb(124, 51, 51);
+$secondary-color: rgb(80, 9, 9);
+$darkRed: rgb(138, 82, 82);
 $black: rgb(0,0,0);
+$charcoal: rgb(40, 31, 31);
 $white: rgb(255, 255, 255);
 $button-shape: (4px, 12px, 4px, 12px);
 $button-border: 4px;
 $padding-10: 10px;
 $margin-10: 10px;
-$min-width: 500px;
-$max-width: 800px;
+$padding-20: 20px;
+$margin-20: 20px;
+$min-width: 800px;
+$max-width: 1500px;
+
 
 body{
-    background-color: $primary-color;
-    color: $white;
+    background-image: radial-gradient($darkRed, $primary-color, $secondary-color, $black);
+    min-height: 100vh;
+    padding-top: 75px;
 }
+

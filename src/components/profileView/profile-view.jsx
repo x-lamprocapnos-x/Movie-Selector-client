@@ -70,23 +70,23 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
 
     return (
         <>
-            <Col md={10}>
+            <Col>
                 <Card>
                     <Card.Header className="bg-dark">Profile</Card.Header>
                     <Card.Body>
                         <Card.Text>Username: {user.Username}</Card.Text>
 
-                        <Card.Text>Password: </Card.Text>
-
                         <Card.Text>Email: {user.Email}</Card.Text>
 
                         <Card.Text>Birthday: {user.Birthday}</Card.Text>
 
-                        <Card.Text>Favorite Movies: {user.FavoriteMovies}</Card.Text>
+                        <Card.Text>
+                            Favorite Movies:<div id="fav-movies-cont">{movies.filter(movie => user.FavoriteMovies.includes(movie.id)).map(m => <MovieCard movie={m} />)}</div>
+                        </Card.Text>
 
                         <Button variant="danger" onClick={() => {
                             if (confirm("Are you sure?")) {
-                                deleteAccount();
+                                deleteUser();
                             }
                         }}>Delete Account</Button>
                     </Card.Body>

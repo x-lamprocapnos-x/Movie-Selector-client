@@ -1,1 +1,16 @@
-.card-title, .card-text, .form-label{ color: black}
+$black: rgb(0,0,0);
+
+.card-title, .card-text, .form-label, .p{ 
+    color:$black;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+#fav-movies-cont{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .card{
+        width: 50%;
+    }
+}
