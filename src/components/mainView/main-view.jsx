@@ -13,10 +13,10 @@ import { setMovies, setUser } from "../../actions/actions";
 const MainView = (props) => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     const storedToken = localStorage.getItem("token");
-    const [user] = useState(storedUser ? storedUser : null);
+    const [user, setUser] = useState(storedUser ? storedUser : null);
     const [token, setToken] = useState(storedToken ? storedToken : null);
     //const [selectedMovie, setSelectedMovie] = useState(null);
-    const {movies, setUser} = props;
+    const {movies} = props;
     const [filteredMovies, setFilteredMovies] = useState(movies);
 
     useEffect(() => {
