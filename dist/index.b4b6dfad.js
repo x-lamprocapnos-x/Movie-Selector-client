@@ -27192,10 +27192,10 @@ const MainView = (props)=>{
     _s();
     const storedUser = JSON.parse(localStorage.getItem("user"));
     const storedToken = localStorage.getItem("token");
-    const [user] = (0, _react.useState)(storedUser ? storedUser : null);
+    const [user, setUser] = (0, _react.useState)(storedUser ? storedUser : null);
     const [token, setToken] = (0, _react.useState)(storedToken ? storedToken : null);
     //const [selectedMovie, setSelectedMovie] = useState(null);
-    const { movies , setUser  } = props;
+    const { movies  } = props;
     const [filteredMovies, setFilteredMovies] = (0, _react.useState)(movies);
     (0, _react.useEffect)(()=>{
         if (!token) return;
@@ -27378,7 +27378,7 @@ const MainView = (props)=>{
         columnNumber: 9
     }, undefined);
 };
-_s(MainView, "CRWlvMSjWvs0WdphR9qTT5tS3rU=");
+_s(MainView, "hj4ZEaszQmrwpwMjyLqA5NJaPCA=");
 _c = MainView;
 let mapStateToProps = (state)=>{
     return {
