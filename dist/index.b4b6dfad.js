@@ -143,8 +143,8 @@
     }
   }
 })({"1xC6H":[function(require,module,exports) {
-var Refresh = require("60a3ea297b9d857f");
-var ErrorOverlay = require("bbaf9db3faa91d51");
+var Refresh = require("cfdbe86b6338a61b");
+var ErrorOverlay = require("fe753127b7c616c9");
 Refresh.injectIntoGlobalHook(window);
 window.$RefreshReg$ = function() {};
 window.$RefreshSig$ = function() {
@@ -163,11 +163,11 @@ window.addEventListener("parcelhmraccept", ()=>{
     ErrorOverlay.dismissRuntimeErrors();
 });
 
-},{"60a3ea297b9d857f":"786KC","bbaf9db3faa91d51":"1dldy"}],"786KC":[function(require,module,exports) {
+},{"cfdbe86b6338a61b":"786KC","fe753127b7c616c9":"1dldy"}],"786KC":[function(require,module,exports) {
 "use strict";
-module.exports = require("a69a8b1a23c0fc04");
+module.exports = require("6edbd51f7c669b2");
 
-},{"a69a8b1a23c0fc04":"hdge7"}],"hdge7":[function(require,module,exports) {
+},{"6edbd51f7c669b2":"hdge7"}],"hdge7":[function(require,module,exports) {
 /** @license React v0.9.0
  * react-refresh-runtime.development.js
  *
@@ -628,7 +628,7 @@ module.exports = require("a69a8b1a23c0fc04");
 })();
 
 },{}],"1dldy":[function(require,module,exports) {
-var process = require("7711a5b620899fe");
+var process = require("3a08c0190400ddc5");
 !function(e, t) {
     module.exports = t();
 }(window, function() {
@@ -2358,7 +2358,7 @@ var process = require("7711a5b620899fe");
     ]);
 });
 
-},{"7711a5b620899fe":"d5jf4"}],"d5jf4":[function(require,module,exports) {
+},{"3a08c0190400ddc5":"d5jf4"}],"d5jf4":[function(require,module,exports) {
 // shim for using process in browser
 var process = module.exports = {};
 // cached from whatever global is present so that test runners that stub it
@@ -2982,9 +2982,9 @@ $RefreshReg$(_c, "MyFlixApplication");
 }
 },{"react/jsx-dev-runtime":"iTorj","react-dom/client":"lOjBx","./components/mainView/main-view":"gF8Qy","bootstrap/dist/css/bootstrap.min.css":"i5LP7","react-bootstrap/Container":"hEdsw","./index.scss":"lJZlQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","@reduxjs/toolkit":"lL1Ef","react-redux":"bdVon","./reducers/reducers":"dgblV"}],"iTorj":[function(require,module,exports) {
 "use strict";
-module.exports = require("21bf9d97a9daaaca");
+module.exports = require("1ace8ba88b6fdb29");
 
-},{"21bf9d97a9daaaca":"48uCM"}],"48uCM":[function(require,module,exports) {
+},{"1ace8ba88b6fdb29":"48uCM"}],"48uCM":[function(require,module,exports) {
 /**
  * @license React
  * react-jsx-dev-runtime.development.js
@@ -2996,7 +2996,7 @@ module.exports = require("21bf9d97a9daaaca");
  */ "use strict";
 (function() {
     "use strict";
-    var React = require("df4c3bb3a1c3155f");
+    var React = require("a0156667052d47ea");
     // ATTENTION
     // When adding new symbols to this file,
     // Please consider also adding to 'react-devtools-shared/src/backend/ReactSymbols'
@@ -3815,11 +3815,11 @@ module.exports = require("21bf9d97a9daaaca");
     exports.jsxDEV = jsxDEV$1;
 })();
 
-},{"df4c3bb3a1c3155f":"21dqq"}],"21dqq":[function(require,module,exports) {
+},{"a0156667052d47ea":"21dqq"}],"21dqq":[function(require,module,exports) {
 "use strict";
-module.exports = require("a9cc8194d3bc57a0");
+module.exports = require("ce14fe569e1f5525");
 
-},{"a9cc8194d3bc57a0":"6YvXz"}],"6YvXz":[function(require,module,exports) {
+},{"ce14fe569e1f5525":"6YvXz"}],"6YvXz":[function(require,module,exports) {
 /**
  * @license React
  * react.development.js
@@ -5687,7 +5687,7 @@ module.exports = require("a9cc8194d3bc57a0");
 
 },{}],"lOjBx":[function(require,module,exports) {
 "use strict";
-var m = require("7eeabc6dcc74c957");
+var m = require("32a04823e1a8ca1a");
 var i = m.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
 exports.createRoot = function(c, o) {
     i.usingClientEntryPoint = true;
@@ -5706,7 +5706,7 @@ exports.hydrateRoot = function(c, h, o) {
     }
 };
 
-},{"7eeabc6dcc74c957":"j6uA9"}],"j6uA9":[function(require,module,exports) {
+},{"32a04823e1a8ca1a":"j6uA9"}],"j6uA9":[function(require,module,exports) {
 "use strict";
 function checkDCE() {
     /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */ if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ === "undefined" || typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE !== "function") return;
@@ -5720,9 +5720,9 @@ function checkDCE() {
     // a false positive.
     throw new Error("^_^");
 }
-module.exports = require("e3f37dfc35d31076");
+module.exports = require("b57e8f385b09c31b");
 
-},{"e3f37dfc35d31076":"3iA9v"}],"3iA9v":[function(require,module,exports) {
+},{"b57e8f385b09c31b":"3iA9v"}],"3iA9v":[function(require,module,exports) {
 /**
  * @license React
  * react-dom.development.js
@@ -5735,8 +5735,8 @@ module.exports = require("e3f37dfc35d31076");
 (function() {
     "use strict";
     /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */ if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
-    var React = require("1f02dcb66b6ab227");
-    var Scheduler = require("b8f69587a5e84731");
+    var React = require("41db6305d3824208");
+    var Scheduler = require("1379d8347e690bce");
     var ReactSharedInternals = React.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
     var suppressWarning = false;
     function setSuppressWarning(newSuppressWarning) {
@@ -26707,11 +26707,11 @@ module.exports = require("e3f37dfc35d31076");
     /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */ if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop === "function") __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(new Error());
 })();
 
-},{"1f02dcb66b6ab227":"21dqq","b8f69587a5e84731":"juvHo"}],"juvHo":[function(require,module,exports) {
+},{"41db6305d3824208":"21dqq","1379d8347e690bce":"juvHo"}],"juvHo":[function(require,module,exports) {
 "use strict";
-module.exports = require("d27331589eff2433");
+module.exports = require("425419d9caaaecc4");
 
-},{"d27331589eff2433":"RqdIf"}],"RqdIf":[function(require,module,exports) {
+},{"425419d9caaaecc4":"RqdIf"}],"RqdIf":[function(require,module,exports) {
 /**
  * @license React
  * scheduler.development.js
@@ -27498,17 +27498,17 @@ $RefreshReg$(_c, "MovieCard");
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
- */ var ReactIs = require("2cf883df75842550");
+ */ var ReactIs = require("e5c71a01848d9f74");
 // By explicitly using `prop-types` you are opting into new development behavior.
 // http://fb.me/prop-types-in-prod
 var throwOnDirectAccess = true;
-module.exports = require("e9decbe6f7ce6be0")(ReactIs.isElement, throwOnDirectAccess);
+module.exports = require("ab0d1dfb83416174")(ReactIs.isElement, throwOnDirectAccess);
 
-},{"2cf883df75842550":"7EuwB","e9decbe6f7ce6be0":"bBUgD"}],"7EuwB":[function(require,module,exports) {
+},{"e5c71a01848d9f74":"7EuwB","ab0d1dfb83416174":"bBUgD"}],"7EuwB":[function(require,module,exports) {
 "use strict";
-module.exports = require("6e38831f965f9e11");
+module.exports = require("8db11b4c0c167723");
 
-},{"6e38831f965f9e11":"5DsXl"}],"5DsXl":[function(require,module,exports) {
+},{"8db11b4c0c167723":"5DsXl"}],"5DsXl":[function(require,module,exports) {
 /** @license React v16.13.1
  * react-is.development.js
  *
@@ -27672,11 +27672,11 @@ module.exports = require("6e38831f965f9e11");
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */ "use strict";
-var ReactIs = require("cb13f0403a096b2c");
-var assign = require("3b5b73de908aa294");
-var ReactPropTypesSecret = require("f0f074d6f713e8b0");
-var has = require("5d594abb34b5e7f3");
-var checkPropTypes = require("212a7051c7f0d163");
+var ReactIs = require("aa8fdb435bead674");
+var assign = require("5879563fc1cb4f1a");
+var ReactPropTypesSecret = require("909f2d66ef247fd4");
+var has = require("f630e819c3c6b581");
+var checkPropTypes = require("8b0091980a491f7a");
 var printWarning = function() {};
 printWarning = function(text) {
     var message = "Warning: " + text;
@@ -28103,7 +28103,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
     return ReactPropTypes;
 };
 
-},{"cb13f0403a096b2c":"7EuwB","3b5b73de908aa294":"7OXxh","f0f074d6f713e8b0":"jZTZJ","5d594abb34b5e7f3":"fqKuf","212a7051c7f0d163":"5VwyJ"}],"7OXxh":[function(require,module,exports) {
+},{"aa8fdb435bead674":"7EuwB","5879563fc1cb4f1a":"7OXxh","909f2d66ef247fd4":"jZTZJ","f630e819c3c6b581":"fqKuf","8b0091980a491f7a":"5VwyJ"}],"7OXxh":[function(require,module,exports) {
 /*
 object-assign
 (c) Sindre Sorhus
@@ -28179,9 +28179,9 @@ module.exports = Function.call.bind(Object.prototype.hasOwnProperty);
  * LICENSE file in the root directory of this source tree.
  */ "use strict";
 var printWarning = function() {};
-var ReactPropTypesSecret = require("74af347349ebb357");
+var ReactPropTypesSecret = require("ede912cce7b9d85");
 var loggedTypeFailures = {};
-var has = require("5af211b1987dba05");
+var has = require("76cf5182f385a77a");
 printWarning = function(text) {
     var message = "Warning: " + text;
     if (typeof console !== "undefined") console.error(message);
@@ -28239,7 +28239,7 @@ printWarning = function(text) {
 };
 module.exports = checkPropTypes;
 
-},{"74af347349ebb357":"jZTZJ","5af211b1987dba05":"fqKuf"}],"3AD9A":[function(require,module,exports) {
+},{"ede912cce7b9d85":"jZTZJ","76cf5182f385a77a":"fqKuf"}],"3AD9A":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Accordion", ()=>(0, _accordionDefault.default));
@@ -29160,9 +29160,9 @@ exports.default = ThemeProvider;
 
 },{"react":"21dqq","react/jsx-runtime":"6AEwr","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6AEwr":[function(require,module,exports) {
 "use strict";
-module.exports = require("17ebd28dee7bbc52");
+module.exports = require("67188b5bd4f9c5ac");
 
-},{"17ebd28dee7bbc52":"kujY4"}],"kujY4":[function(require,module,exports) {
+},{"67188b5bd4f9c5ac":"kujY4"}],"kujY4":[function(require,module,exports) {
 /**
  * @license React
  * react-jsx-runtime.development.js
@@ -29174,7 +29174,7 @@ module.exports = require("17ebd28dee7bbc52");
  */ "use strict";
 (function() {
     "use strict";
-    var React = require("c9b37a397d5b3082");
+    var React = require("4ba7bb353c1ce701");
     // ATTENTION
     // When adding new symbols to this file,
     // Please consider also adding to 'react-devtools-shared/src/backend/ReactSymbols'
@@ -30005,7 +30005,7 @@ module.exports = require("17ebd28dee7bbc52");
     exports.jsxs = jsxs;
 })();
 
-},{"c9b37a397d5b3082":"21dqq"}],"2p9OR":[function(require,module,exports) {
+},{"4ba7bb353c1ce701":"21dqq"}],"2p9OR":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
@@ -38675,7 +38675,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.default = all;
-var _createChainableTypeChecker = require("6459ba2aa44260ae");
+var _createChainableTypeChecker = require("b130a4552e80f322");
 var _createChainableTypeChecker2 = _interopRequireDefault(_createChainableTypeChecker);
 function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
@@ -38698,7 +38698,7 @@ function all() {
 }
 module.exports = exports["default"];
 
-},{"6459ba2aa44260ae":"1m8lT"}],"1m8lT":[function(require,module,exports) {
+},{"b130a4552e80f322":"1m8lT"}],"1m8lT":[function(require,module,exports) {
 "use strict";
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -41203,7 +41203,7 @@ exports.default = Tooltip;
 
 },{"classnames":"jocGM","react":"21dqq","./ThemeProvider":"dVixI","./helpers":"gotcT","./getInitialPopperStyles":"c8j3Q","react/jsx-runtime":"6AEwr","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"km3Ru":[function(require,module,exports) {
 "use strict";
-var Refresh = require("85e49f09cb35c48f");
+var Refresh = require("f782a0d189c8a349");
 function debounce(func, delay) {
     {
         let timeout = undefined;
@@ -41334,7 +41334,7 @@ function registerExportsForReactRefresh(module1) {
     }
 }
 
-},{"85e49f09cb35c48f":"786KC"}],"4Ei4C":[function() {},{}],"9xmpe":[function(require,module,exports) {
+},{"f782a0d189c8a349":"786KC"}],"4Ei4C":[function() {},{}],"9xmpe":[function(require,module,exports) {
 /**
  * React Router DOM v6.10.0
  *
@@ -46810,9 +46810,9 @@ parcelHelpers.exportAll(_exports, exports);
 
 },{"use-sync-external-store/shim":"hyxdF","use-sync-external-store/shim/with-selector":"iDrhg","./utils/reactBatchedUpdates":"5K86X","./utils/batch":"ikw0G","./hooks/useSelector":"l3rFI","./components/connect":"5gOIw","./exports":"iAa1P","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hyxdF":[function(require,module,exports) {
 "use strict";
-module.exports = require("3a56fb47e22512fc");
+module.exports = require("1bcff33acca23353");
 
-},{"3a56fb47e22512fc":"khU3l"}],"khU3l":[function(require,module,exports) {
+},{"1bcff33acca23353":"khU3l"}],"khU3l":[function(require,module,exports) {
 /**
  * @license React
  * use-sync-external-store-shim.development.js
@@ -46825,7 +46825,7 @@ module.exports = require("3a56fb47e22512fc");
 (function() {
     "use strict";
     /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */ if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
-    var React = require("9f106d6fc1993951");
+    var React = require("1aa6740289cfc14c");
     var ReactSharedInternals = React.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
     function error(format) {
         for(var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++)args[_key2 - 1] = arguments[_key2];
@@ -46977,11 +46977,11 @@ module.exports = require("3a56fb47e22512fc");
     /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */ if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop === "function") __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(new Error());
 })();
 
-},{"9f106d6fc1993951":"21dqq"}],"iDrhg":[function(require,module,exports) {
+},{"1aa6740289cfc14c":"21dqq"}],"iDrhg":[function(require,module,exports) {
 "use strict";
-module.exports = require("b1e07e8169ec7f4f");
+module.exports = require("567ac5f0c2dce040");
 
-},{"b1e07e8169ec7f4f":"vU6Qe"}],"vU6Qe":[function(require,module,exports) {
+},{"567ac5f0c2dce040":"vU6Qe"}],"vU6Qe":[function(require,module,exports) {
 /**
  * @license React
  * use-sync-external-store-shim/with-selector.development.js
@@ -46994,8 +46994,8 @@ module.exports = require("b1e07e8169ec7f4f");
 (function() {
     "use strict";
     /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */ if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
-    var React = require("8c32c262faf42cb1");
-    var shim = require("e7ab6cff75d6db4d");
+    var React = require("9647cd7f11b073cc");
+    var shim = require("3da2af0ba7e78ad1");
     /**
  * inlined Object.is polyfill to avoid requiring consumers ship their own
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is
@@ -47099,7 +47099,7 @@ module.exports = require("b1e07e8169ec7f4f");
     /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */ if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop === "function") __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(new Error());
 })();
 
-},{"8c32c262faf42cb1":"21dqq","e7ab6cff75d6db4d":"hyxdF"}],"5K86X":[function(require,module,exports) {
+},{"9647cd7f11b073cc":"21dqq","3da2af0ba7e78ad1":"hyxdF"}],"5K86X":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "unstable_batchedUpdates", ()=>(0, _reactDom.unstable_batchedUpdates));
@@ -47563,7 +47563,7 @@ exports.default = connect;
 
 },{"@babel/runtime/helpers/esm/extends":"fTBFS","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"adHgr","hoist-non-react-statics":"1GfsB","react":"21dqq","react-is":"lb6Ui","../connect/selectorFactory":"e9uH3","../connect/mapDispatchToProps":"5QhPl","../connect/mapStateToProps":"4Hl4c","../connect/mergeProps":"hQpBj","../utils/Subscription":"ieuHT","../utils/useIsomorphicLayoutEffect":"kNbVc","../utils/shallowEqual":"gV5L4","../utils/warning":"cUQUw","./Context":"ji81o","../utils/useSyncExternalStore":"dSsKl","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1GfsB":[function(require,module,exports) {
 "use strict";
-var reactIs = require("f9c9663d39a43eca");
+var reactIs = require("dfb96f5d9c9f77ff");
 /**
  * Copyright 2015, Yahoo! Inc.
  * Copyrights licensed under the New BSD License. See the accompanying LICENSE file for terms.
@@ -47645,11 +47645,11 @@ function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
 }
 module.exports = hoistNonReactStatics;
 
-},{"f9c9663d39a43eca":"7EuwB"}],"lb6Ui":[function(require,module,exports) {
+},{"dfb96f5d9c9f77ff":"7EuwB"}],"lb6Ui":[function(require,module,exports) {
 "use strict";
-module.exports = require("78e60c42ed04e7ad");
+module.exports = require("5b5fbb83b3bdf468");
 
-},{"78e60c42ed04e7ad":"idDA8"}],"idDA8":[function(require,module,exports) {
+},{"5b5fbb83b3bdf468":"idDA8"}],"idDA8":[function(require,module,exports) {
 /**
  * @license React
  * react-is.development.js
@@ -49293,8 +49293,8 @@ var _reselect = require("reselect");
 // src/getDefaultMiddleware.ts
 var _reduxThunk = require("redux-thunk");
 var _reduxThunkDefault = parcelHelpers.interopDefault(_reduxThunk);
-var process = require("b1de9a3770061e80");
 var global = arguments[3];
+var process = require("46668ee9249e6ae5");
 var __extends = undefined && undefined.__extends || function() {
     var extendStatics = function(d, b) {
         extendStatics = Object.setPrototypeOf || ({
@@ -51340,7 +51340,7 @@ var autoBatchEnhancer = function(options) {
 // src/index.ts
 (0, _immer.enableES5)();
 
-},{"b1de9a3770061e80":"d5jf4","immer":"4sfoz","redux":"cDNB3","reselect":"isIsC","redux-thunk":"iFVTZ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4sfoz":[function(require,module,exports) {
+},{"46668ee9249e6ae5":"d5jf4","immer":"4sfoz","redux":"cDNB3","reselect":"isIsC","redux-thunk":"iFVTZ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4sfoz":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Immer", ()=>un);
