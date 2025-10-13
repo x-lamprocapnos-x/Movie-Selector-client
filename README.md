@@ -2,12 +2,15 @@
 ### A React application that allows users to browse and select movies, with features for user authentication, movie details, and user profile management. The app interacts with a movie API to fetch and display data and integrates Redux for state management.
 
 ## **Table of Content**
--
--
--
--
--
--
+- Features
+- Installation
+- Development
+- Dependencies
+- Usage Guide
+- API Integration
+- Redux Store Structure
+- File Structure
+- Issues and Contributions
 
 ## **Features**
 - User Authentication: Sign up, login, and logout functionalities.
