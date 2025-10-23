@@ -17,10 +17,10 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
 
 
         const userData = {
-            username,
-            password,
-            email,
-            birthday
+            Username: username,
+            Password: password,
+            Email: email,
+            Birthday: birthday
         }
 
         fetch(`https://movie-selector.onrender.com/users/${user.username}`, {
@@ -138,8 +138,8 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
                                     className="bg-light"
                                 />
                             </Form.Group>
+                        <Button variant="primary" type="submit">Submit</Button>
                         </Form>
-                        <Button varaint="primary" type="submit">Submit</Button>
                     </Card.Body>
                 </Card>
             </Col>
