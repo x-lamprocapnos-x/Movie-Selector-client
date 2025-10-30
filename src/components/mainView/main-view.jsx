@@ -114,6 +114,7 @@ const MainView = (props) => {
                                                     setToken(null);
                                                     localStorage.clear();
                                                 }}
+                                                updateUser={setUser}
                                             />
                                         </Col>
                                     )}
