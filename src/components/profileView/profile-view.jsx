@@ -10,20 +10,18 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
     const [email, setEmail] = useState("");
     const [birthday, setBirthday] = useState("");
 
-    let favoriteMovie = (movie => user.favoriteMovie.includes(movie.Id));
-
     const handleSubmit = event => {
         event.preventDefault();
 
 
         const userData = {
-            Username: username,
-            Password: password,
-            Email: email,
-            Birthday: birthday
+            Username: username || user.Username,
+            Password: password || user.Password,
+            Email: email || user.Email,
+            Birthday: birthday || user.Birthday
         }
 
-        fetch(`https://movie-selector.onrender.com/users/${user.username}`, {
+        fetch(`https://movie-selector.onrender.com/users/${user.Username}`, {
             method: "PUT",
             body: JSON.stringify(userData),
             headers: {
@@ -43,6 +41,7 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
                 if (user) {
                     alert("Changes to user Successful");
                     updateUser(user);
+                    localStorage.setItem("user", JSON.stringify(user))
                 }
             })
             .catch(e => {
@@ -51,7 +50,7 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
     }
 
     const deleteUser = () => {
-        fetch(`https://movie-selector.onrender.com/users/${user.username}`, {
+        fetch(`https://movie-selector.onrender.com/users/${user.Username}`, {
             method: "DELETE",
             headers: { Authorization: `Bearer ${token}` }
         })
